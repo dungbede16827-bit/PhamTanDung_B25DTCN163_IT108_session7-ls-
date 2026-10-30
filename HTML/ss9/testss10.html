@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    let person = {
+        name: "peter",
+        age:18,
+        hometown: "Ha Noi",
+        job: "lập trình viên",
+        single: true,
+        hobbies: ["listening to music,Reading a Books"],
+        sayHi: function() {
+            console.log("Hello everyone");
+        },
+    };
+    console.log(person);
+    person.name; // "Peter";
+    console.log(person.name);
+
+    person.hobbies; // []
+
+    console.log(person.sayHi); // function() {//say hi}
+
+    person.sayHi();
+
+    // bracket notation ([])
+    // Dot notation (.)
+    for (let key in person) {
+        console.log(person[key]);
+    }
+
+    // lần lặp 1 : duyệt qua name: person[key] === person["name"] === person.name
+        // lần lặp 1 : duyệt qua name: person[key] === person["age"] === person.age
+
+        person.weight = "70kg";
+        person.height = "175cm";
+
+        person.introduce = function() {
+            console.log("xin chào , tôi tên là Peter]");
+
+        };
+
+        person.job = " chạy grap";
+
+        console.log(person);
+
+        delete person.job
+
+        let studentList = [
+            {
+                id :1;
+                name : " Peter Parker"
+                age : 18
+
+            };
+            {
+                id :2;
+                name : " Tony Stark"
+                age : 40
+
+            };
+            {
+                id :3;
+                name : " Steve"
+                age : 37
+
+            };
+        ];
+        console.log(studentList[0].id); // 1
+        console.log(studentList[0].name); // peter parker
+        console.log(studentList[0].age); // 18
+
+        for (let student of studentList) {
+            console.log("id",student.id);
+             console.log("name",student.name);
+            console.log("age",student.age);
+           
+        }
+
+   </script> 
+</body>
+</html>

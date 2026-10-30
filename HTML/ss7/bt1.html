@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let playerIds = [];
+        let playerPositions = [];
+        let id ;
+        let vitri;
+    do{
+        let num = +prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng");
+    }while(!isNaN(num) || num < 0) 
+            
+        for(let i =0 ; i < num ; i++) {
+            id = prompt(`Nhập mã cầu thủ ${i + 1}`);
+            if(playerIds.includes(name)) {
+               alert("Tên cầu thủ đã tồn tại, nhập lại!");
+                 i--; // nhập lại lần này 
+            }
+                
+             playerIds.push(id);
+            alert("thêm thành công");
+            }
+
+        vitri = +prompt("Nhập vị trí (chọn số: 1=Thủ môn, 2=Hậu vệ, 3=Tiền vệ, 4=Tiền đạo)");
+            switch(vitri) {
+                case 1 :
+                    playerPositions.push("Thủ Môn");
+                break;
+                case 2 :
+                    playerPositions.push("Hậu vệ");
+                break;
+                case 3 :
+                    playerPositions.push("Tiền vệ");
+                break;
+                case 4 :
+                    playerPositions.push("Tiền đạo");
+                break;
+
+            }
+            function printTeamRoster() {
+    console.log("DANH SÁCH ĐỘI BÓNG:");
+    for (let i = 0; i < playerIds.length; i++) {
+        console.log(
+            `${i + 1}. Mã: ${playerIds[i]} - Vị trí: ${playerPositions[i]}`
+        );
+    }
+}
+function findPlayersByPosition(position) {
+    let result = [];
+
+    for (let i = 0; i < playerPositions.length; i++) {
+        if (playerPositions[i] === position) {
+            result.push(i);
+        }
+    }
+
+    return result;
+}
+
+
+
+
+
+           
+        
+        
+
+        
+
+    </script>
+</body>
+</html>

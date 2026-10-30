@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let menu =[];
+        let traSoSach = Number(prompt("Bạn muốn trả bao nhiêu cuốn sách ?"));
+        for(let i =1 ; i<= traSoSach ;i++) {
+            menu[i] =prompt(`nhập phần tử thứ ${i}`)
+        }
+        document.write("Danh sách được trả là : <br>");
+        for(let i = 0 ; i < menu.length  ; i++) {
+            document.write((i+1) + ". " + menu[i] +"<br>");1
+
+        }
+
+    </script>
+</body>
+</html>

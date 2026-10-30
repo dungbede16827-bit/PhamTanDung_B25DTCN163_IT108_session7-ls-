@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let players = [
+            "P001-Nguyễn Văn A-Thủ môn",
+            "P002-Trần Văn B-Hậu vệ",
+            "P003-Lê Văn C-Tiền vệ",
+            "P004-Phạm Văn D-Tiền đạo",
+            "P005-Nguyễn Văn E-Tiền đạo",
+            "P006-Trần Văn F-Tiền đạo"
+        ];
+        function printTeamRoster() {
+            console.log("===== DANH SÁCH CẦU THỦ =====");
+            for (let i = 0; i < players.length; i++) {
+                let arr = players[i].split("-");
+                console.log((i + 1) + ". " + arr[0] + " | " + arr[1] + " | " + arr[2]);
+            }
+        }
+        function countPlayerByPostion(players) {
+            let count = {};
+
+            for (let i = 0; i < players.length; i++) {
+                let position = players[i].split("-")[2];
+
+                if (count[position]) {
+                    count[position]++;
+                } else {
+                    count[position] = 1;
+                }
+            }
+
+            return count;
+        }
+        function hasGoalkeeper() {
+            for (let i = 0; i < players.length; i++) {
+                let position = players[i].split("-")[2];
+                if (position === "Thủ môn") {
+                    return true;
+                }
+            }
+            return false;
+        }
+        printTeamRoster();
+
+        console.log("Số lượng cầu thủ theo vị trí:");
+        console.log(countPlayerByPostion(players));
+
+        console.log("Đội có thủ môn không? " + hasGoalkeeper());
+
+    </script>
+</body>
+
+</html>

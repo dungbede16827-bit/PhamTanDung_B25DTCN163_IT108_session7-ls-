@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let isLoggedIn = true;
+
+        let gameOver = false;
+
+        let isWaterWet = true;
+        
+        console.log(isLoggedIn);
+
+        1 > 1 // false 
+        console.log(1>1);
+        1 >= 1 // true
+        console.log(1>=1);
+        console.log(1<1);
+        console.log(1<=1);
+        1==1 // true 
+        console.log(1==1);
+
+        console.log(1 == "1"); // true
+
+        console.log(1 != "1"); //false
+
+        console.log(1 === "1"); //false
+
+        console.log(1 !== "1"); //true
+        
+
+        // câu điều kiện rẽ nhánh
+
+        if(condition) {
+            do something
+        } else if (condition2){
+            do something
+        } else if (condition3){
+            do something
+        } ...
+
+
+        let animal = promt("nhập con vật");
+        if(animal === "dog") {
+            console.log("Gâu Gấu !....");
+        } else if (animal === "cat")  {
+             console.log("Meww meo !....");
+        } else if (animal === "duck") {
+            console.log("Quạc quạc !!!... ");
+        } else if (animal === "horse") {
+             console.log("hí hí hí !!!... ");
+        } else if ( animal === "chicken") {
+            console.log("cục tác....");
+        }
+         else {
+            console.log ("con vật chưa cso trong thư viện của chúng tôi !");
+        }
+
+
+        switch(animal) {
+            case "dog":
+                console.log("Gâu gâu !!!...");
+                break;
+            case "cat":
+                console.log("meo meo!!!...");
+                break;
+
+            case "duck":
+                console.log("quoạc quoạc !!!...");
+                break;
+            case "horse":
+                console.log("hí hí !!!...");
+                break;
+            case "pig":
+                console.log("ỉn !!!...");
+                break;
+            case "chicken":
+                console.log("cục tác!!!...");
+                break;
+            default:
+                console.log("con vật chưa có trong thư viện của chúng tôi");
+                break;
+        }
+
+        let userInput = prompt("mời b nhập vào");
+
+        if(userInput !== "") {
+            console.log ("giá trị nhập vào khác giá trị rỗng");
+        } else {
+            console.log ("giá trị nhập vào rỗng");
+        }
+
+        if (0) { // số 0 là falsy 
+            console.log ("Giá trị nhập vào là truethy");
+        } else {
+             console.log ("Giá trị nhập vào là falsy");
+        }
+    </script>
+</body>
+</html>

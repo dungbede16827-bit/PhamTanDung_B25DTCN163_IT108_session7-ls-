@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let student = [
+            {id: SV001 , name: "Phạm Tấn Dũng" , mathScores: 10 , literatureScore: 10 , englishScore: 10 , tb: 10},
+            {id: SV002 , name: "Nguyễn Văn B" , mathScores: 10 , literatureScore: 10 , englishScore: 10 , tb: 10},
+            {id: SV003 , name: "Trần Văn C" , mathScores: 10 , literatureScore: 10 , englishScore: 10 , tb: 10},
+
+        ];
+                const showMenu = () => {
+         let choice = prompt(`
+         Mời bạn nhập lựa chọn : 
+                 1   Create Student
+                 2   Update Student
+                 3   Soft Delete Student
+                 4   Restore Student
+                 5   View Students (Pipeline Mode)
+                 6   Analytics Dashboard
+                 7   Exit
+            Enter your choice: 
+            
+         `)
+         return choice;
+        };
+        const main = () =>  {
+            let choice 
+            while(choice != 7) {
+                choice = showMenu();
+                choice = Number(choice);
+                switch(choice) {
+                    case 1: {
+                        
+                        break;
+                
+                }
+                default : 
+                        alert("lựa chọn không hợp lệ");
+                        break;
+
+            }
+        }
+    };
+
+        main();
+        
+        
+             
+        
+        
+
+    </script>
+</body>
+</html>

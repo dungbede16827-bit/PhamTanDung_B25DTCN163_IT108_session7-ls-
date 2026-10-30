@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let coKh = prompt("Có yêu cầu gia hạn mới không? (có/không)");
+
+        if(coKh = "có") {
+            alert("tiếp tục xử lý");
+            
+        } else {
+            document.write("Số lần gia hạn thành công");
+           document.write("Số lần gia hạn không thành công ");
+
+        }
+         let tenNguoiMuon = prompt("Tên người mượn");
+        let tenSach = prompt("Tên sách");
+        let soNgayMuon = Number(prompt("Số ngày mượn (số nguyên ≥ 1) "));
+        let soNgayGH =  Number(prompt("Số ngày gia hạn (số nguyên ≥ 1) "));
+        
+        if(soNgayMuon+soNgayGH == 60) {
+            document.write("Không được gia hạn: Tổng thời gian vượt quá 60 ngày tối đa");
+        } else if (soNgayMuon+soNgayGH > 45) {
+             document.write("Không được gia hạn: Đã mượn quá lâu (>45 ngày)");
+        } else {
+             document.write("Gia hạn thành công");
+        }
+
+    </script>
+</body>
+</html>

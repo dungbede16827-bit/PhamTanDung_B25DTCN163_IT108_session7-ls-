@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let students = ["phong", "đúc", "hốn", "dương", "liều"];
+        let scores = [5, 6, 7, 8, 9];
+
+        //for Each không có giá trị trả về
+
+        students.forEach((value, index, arr) => {
+            console.log("giá trị phần tử", value);
+            console.log("chỉ số phần tử : ", index);
+            console.log("mảng ban đầu", arr);
+        });
+        students.forEach((value) => {
+            console.log("giá trị phần tử", value);
+            console.log("chỉ số phần tử : ", index);
+            console.log("mảng ban đầu", arr);
+        });
+
+        // map
+        let newscores = scores.map((value, index, arr) => {
+            return value * 10;
+            //đưa vào mảng mới value thì là 56789 index thì là 01234
+        });
+        console.log(newscores);
+        //filter
+
+        let goodScores = scores.filter(value => value > 6);
+        console.log(goodScores);
+
+        // some & every 
+        let check = scores.some(value => value < 0)
+        console.log(check);
+
+        let check = scores.every(value => value < 0)
+        console.log(check);
+
+        //find & findIndex
+        let findStudent = students.find(value => value === "Dương");
+        console.log(findStudent);
+
+        letStudentIndex = students.findIndex(value => value === "Dương")
+        console.log(findStudent);
+
+        //reduce 
+        let totalScore = scores.reduce((accumulative, value, index, arr) => {
+            accumulative += value;
+            console.log("giá trị của biến tích lũy:", accumulative);
+            return accumulative;
+        }, 0);
+        console.log(totalScore);
+
+        //sort
+        scores.sort((a, b) => b - a); // so sánh kí tự cộng vào 10 sẽ nhỏ hơn 2 vì 10 cộng các phần tử vào có 1
+        console.log(scores);
+
+
+    </script>
+</body>
+
+</html>

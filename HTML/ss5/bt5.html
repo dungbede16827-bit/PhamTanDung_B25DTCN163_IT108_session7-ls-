@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let booksId = [];
+        let booksName = [];
+        let booksCategory = [];
+        let inventoryQuantity = [];
+        let soLuongSach;
+        let id;
+        let name;
+        let theLoai;
+        let tonKho;
+
+        do {
+            soLuongSach = Number(prompt("Có bao nhiêu loại sách cần nhập thông tin hôm nay?"));
+        } while (NaN(soLuongSach) || soLuongSach <= 0)
+
+        for (let i = 0; i < soLuongSach; i++) {
+            alert("Nhập thông tin cho sách thứ " + (i + 1));
+
+            do {
+                id = prompt("Nhập mã sách mới :");
+
+                id = id.trim();
+                if (id === "") {
+                    alert("Mã sách không được để trống!");
+                    continue;
+                }
+                if (booksId.includes(id)) { // kiểm tra trùng lặp
+
+                    alert("mã sách đã tồn tại, vui lòng thử lại mã khác!");
+                    continue
+
+                }
+                booksId.push(id);
+                alert("thêm mã sách thành công!");
+                break;
+
+            } while (true)
+
+
+            do {
+                name = prompt("Nhập tên sách: ");
+                name = name.trim();
+                if (name = "") {
+                    alert("tên sách không được để trống!");
+                    continue;
+                }
+                booksName.push(name);
+                alert("thêm tên sách thành công!");
+                break;
+
+            } while (true)
+
+
+            theLoai = prompt("Nhập các thể loại  ví dụ: Lập trình,JavaScript,Web ");
+            booksCategory.push(theLoai);
+            alert("thêm thể loại thành công!");
+
+            do {
+                tonKho = Number(prompt("Nhập số lượng tồn kho (≥ 0)"));
+                if (tonKho < 0) {
+                    alert("không được nhỏ hơn 0 ! hãy nhập lại");
+                    continue;
+                }
+                inventoryQuantity.push(tonKho);
+                alert("số lượng tồn kho đã được nhập!");
+                break;
+
+            } while (true)
+
+
+
+
+        }
+        let count = 0;
+
+        for (let i = 0; i < soLuongSach; i++) {
+            let theLoaiSach = booksCategory[i].toLowerCase();
+            if (theLoaiSach.includes("lập trình")) {
+                console.log(booksCategory[i]);
+                count++;
+            }
+
+        }
+        console.log("Tổng số sách thuộc thể loại Lập trình:", count);
+
+
+
+        for (let i = 0; i < soLuongSach; i++) {
+            let theLoaiSach = booksCategory[i].toLowerCase();
+            if (theLoaiSach.includes("JavaScript") && theLoaiSach.includes("Web")) {
+                console.log(booksId[i]);
+            }
+
+        }
+
+        let minQuantity = inventoryQuantity[0];
+        let indexMin = 0;
+        for (let i = 1; i < inventoryQuantity.length; i++) {
+            if (inventoryQuantity[i] < minQuantity) {
+                minQuantity = inventoryQuantity[i];
+                indexMin = i;
+            }
+        }
+
+        console.log("Loại sách có tồn kho thấp nhất:", inventoryQuantity[indexMin]);
+
+
+
+
+    </script>
+
+</body>
+
+</html>

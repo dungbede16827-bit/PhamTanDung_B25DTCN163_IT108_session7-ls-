@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let knnt = 0;
+        let kntb = 0;
+        let knn = 0;
+        let dxct = 0;
+        let phtc = 0;
+        let tsphkn = 0;
+
+        while(true) {
+            let tiepTuc = prompt("Có khiếu nại/phản hồi mới từ bạn đọc không? (có/không)").toLowerCase().trim();
+            if (tiepTuc === "không") {
+        
+            break; 
+            }else if (tiepTuc === "có") {
+                let name = "";
+
+                while (name === "") {
+                    name = prompt("Tên bạn đọc không được để trống");
+                }
+
+                let maThe = "";
+                while (name === "") {
+                    maThe = prompt("mã thẻ không được để trống");
+                }
+
+                let loaiPhanHoi = 0 ;
+
+                while (loaiPhanHoi !== 1 && loaiPhanHoi !== 2 && loaiPhanHoi !== 3) {
+                tinhTrang = prompt(" 1 = Phàn nàn / Khiếu nại 2 = Đề xuất cải thiện 3 = Phản hồi tích cực / Khen ngợi");
+                }
+
+                let mucDoNghiemTrong = 0 ;
+                
+                while (mucDoNghiemTrong !== 1 && mucDoNghiemTrong !== 2 && mucDoNghiemTrong !== 3) {
+                mucDoNghiemTrong = prompt("  1 = Nhẹ (có thể xử lý nhanh) 2 = Trung bình 3 = Nghiêm trọng (cần báo cáo lãnh đạo)");
+                }
+
+                tsphkn++;
+
+                if(loaiPhanHoi == 1 && mucDoNghiemTrong == 3) {
+                    knnt++;
+                    console.log("Chuyển ngay lãnh đạo - Khiếu nại nghiêm trọng");
+                } else if (loaiPhanHoi == 1 && mucDoNghiemTrong == 2) {
+                    kntb++;
+                    console.log("Ghi nhận, sẽ xử lý trong ngày - Khiếu nại trung bình")
+                }else if (loaiPhanHoi ==1 && mucDoNghiemTrong ==1 ) {
+                    knn++;
+                    console.log("Xử lý ngay tại quầy - Khiếu nại nhẹ");
+                } else if (loaiPhanHoi == 2 ) {
+                    dxct++;
+                    console.log(" Cảm ơn! Đề xuất đã được ghi nhận");
+                } else {
+                    phtc++;
+                    console.log("Cảm ơn bạn đã phản hồi tích cực!");
+                }
+
+
+
+
+            } else {
+                alert("Vui lòng chỉ nhập 'có' hoặc 'không'.");
+            }
+
+
+        }
+
+        // --- IN BÁO CÁO KẾT THÚC ---
+let baoCao = 
+`--- BÁO CÁO KIỂM KÊ ---
+Tổng số phản hồi/khiếu nại đã xử lý: ${tsphkn} 
+Số khiếu nại nghiêm trọng (mức 3): ${knnt} 
+Số khiếu nại trung bình (mức 2) : ${kntb} 
+Số khiếu nại nhẹ (mức 1) : ${knn}
+Số đề xuất cải thiện : ${dxct}
+Số phản hồi tích cực : ${phtc}
+`;
+
+alert(baoCao);
+console.log(baoCao);
+    </script>
+</body>
+</html>

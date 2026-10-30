@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1 onclick="handleClick()">Demo events</h1> -->
+    <h1 onclick="handleClick()">Demo events</h1>
+    <form action="" class="form" id="form">
+        <div class="input-group">
+            <label for="name">Họ và tên</label>
+        <input type="text" name="" id="name">
+        
+        </div>
+        <div class="input-group">
+            <label for="age">Tuổi</label>
+        <input type="number" id="age">
+        </div>
+        
+        <input type="submit" class="submit-btn">
+    </form>
+    <script>
+        function handleClick() {
+            console.log("Click vào tiêu đề 1 ")
+            const form = document.getElementById("form");
+            form.style.backgroundColor = "bg-blue";
+        }
+        // const h1 = document.getElementsByTagName("h1")[0];
+        // h1.onclick = handleClick;
+        document.addEventListener("click",()=>{
+            // console.log("Sự kiên được gắn bằng addEventListener");
+        });
+
+        const nameInput = document.getElementById("name");
+        nameInput.addEventListener("input",() => {
+            console.log("giá trị trong ô input bị thay đổi");
+            console.log("giá trị mới là:", nameInput.value);
+        })
+        const form = document.getElementById("form");
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault(); // ngăn chặn hành vi mặc định của form khi submit
+            console.log(e.target); // phần tử đã kích hoạt sự kiện submit
+        })
+    </script>
+
+</body>
+</html>

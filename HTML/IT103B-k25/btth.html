@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let tenSach = prompt("Nhập tên ");
+        let tenTacGia = prompt("Nhập Tác Giả ");
+        let tenXuatBan = prompt("Nhập Xuất bản ");
+        let namXB = prompt("Nhập năm xuất bản ");
+        let gia = prompt("Nhập giá tiền ");
+        let soLuongNhap = prompt("Nhập số lượng nhập ");
+
+        const randomNumber = Math.floor(Math.random() * 1000) + 1;
+        const Number_1 = Math.floor(Math.random() * 10) + 1;
+
+        tenSach = tenSach.trim();
+        tenSach = tenSach.toLocaleUpperCase();
+
+        tenTacGia = tenTacGia.toLocaleUpperCase();
+
+        let maSach = (tenTacGia.slice(0,3) +  "-" + tenXuatBan + "-" + randomNumber );
+
+        let tuoiSach = +2026 - namXB ;
+
+        
+
+        let TongGiaTri = Number(gia) * Number(soLuongNhap) ;
+       
+        document.write("---PHIẾU NHẬP KHO ---- \n");
+
+        document.write("<br> Mã sách: " + maSach );
+        document.write("<br> Tên sách: " + tenSach);
+
+        document.write("<br> Tác giả: " + tenTacGia);
+
+        document.write("<br> Năm xuất bản: " + namXB);
+
+        document.write("<br> Tuổi sách : " + tuoiSach);
+
+        document.write("<br> Tổng giá trị :  " + TongGiaTri + "VNĐ");
+
+        document.write("<br> Ngăn kệ gợi ý :  " + "kệ số  " + Number_1 );
+
+
+        
+
+
+    </script>
+</body>
+</html>

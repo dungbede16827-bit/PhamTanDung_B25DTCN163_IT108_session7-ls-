@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         let matKhauDung = "12345";
+        let taiKhoanDung = "admin123";
+        let soLan =0;
+        let matKhauNhap;
+        let taiKhoanNhap;
+
+        do {
+            taiKhoanNhap = prompt("mời bạn nhập tài khoản : ");
+            matKhauNhap = prompt("mời bạn nhập mật khẩu :");
+
+            if(taiKhoanNhap === taiKhoanDung && matKhauNhap === matKhauDung) {
+                alert("bạn đã đăng nhập thành công ");
+                break;
+            } else {
+                soLan++;
+                alert("Bạn đã đăng nhập thất bại còn  " + soLan + "để thử lại");
+            }
+
+            if(soLan == "3") {
+                alert("số lần đăng nhập đã quá 3 lần tài khoản đã bị khóa");
+                return;
+            }
+
+
+        } while (soLan < 3);
+
+        while (true) {
+            let chon = Number(prompt(`
+        ===== MENU =====
+        1. Phân loại mã số sách (Số nguyên chẵn/lẻ).
+        2. Thiết kế bản đồ kho sách (Dạng lưới).
+        3. Dự toán phí bảo trì sách theo năm.
+        4. Tìm mã số sách may mắn (Số nguyên tố/Số đặc biệt).
+        5. Thoát
+        `));
+        }
+        switch (chon) {
+            case 1:
+                let maSach;
+                let tong = 0;
+                let demChan = 0 ;
+                let demLe = 0;
+                do {
+                    maSach = Number(prompt("nhập mã sách(Nhập 0 để dừng):"))
+                    if(maSach !== 0 ) {
+                        tong++;
+                        if(maSach % 2 === 0) {
+                            demChan++;
+                        } else {
+                            demLe++;
+                        }
+                    }
+
+
+                } while (maSach !== 0) 
+                alert(
+        "Tổng số mã sách: " + tong +
+        "\nSố mã chẵn (Sách khoa học): " + demChan +
+        "\nSố mã lẻ (Sách nghệ thuật): " + demLe
+        );
+                    
+
+                
+            case 2:
+                let hang = Number(prompt("mời bạn nhập vào số hàng"));
+                let cot = Number(prompt("mời bạn nhập vào số cột"));
+                for(let h = 1 ; h <= hang ; h++) {
+                    for(let c = 1; c<= cot ; c++) {
+                        if(hang === cot ) {
+                            document.write(`[${hang}-${cot}] (kệ ưu tiên)`);
+                        } else {
+                            document.write(`[${hang}] - ${cot} `);
+                        }
+                    }
+                    document.write("<br>");
+                }
+                
+            case 3:
+                let soLuongHienCo = Number(prompt("mời bạn nhập số lượng sách hiện có"));
+                let phiBaoTri = Number(prompt("phí bảo trì cho từng cuốn "));
+                let soNamDuToan = Number(prompt("số năm dự toán :"));
+                for(let i = 1 ; i <= soNamDuToan ; i++) {
+                    let tongPhi = soLuongHienCo * phiBaoTri;
+
+                    phiBaoTri= phiBaoTri* 1.1;
+                }
+                console.log("phi tong " + tongPhi);
+
+
+
+            case 4:
+                let nhapSo = Number(prompt("mời bạn nhập số may mắn"));
+                let dem = 0;
+                document.write("danh sách mã, sách may mắn : <br>");
+                for(let i = 1 ; i < nhapSo ; i++) {
+                    if(i % 3 === 0 && i % 5 !== 0 ) {
+                        document.write(i + "<br>");
+                        dem++;
+
+                    }
+                }
+                document.write("<br>Tổng số mã may mắn: " + dem); 
+            case 5:
+                alert("bạn đã chọn thoát !!");
+                return;
+            default :
+                alert("lựa chọn không hợp lệ chọn lại");
+            
+
+
+        }
+
+    </script>
+</body>
+</html>

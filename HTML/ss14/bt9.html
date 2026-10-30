@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm sản phẩm</title>
+</head>
+
+<body>
+
+    <input type="text" id="search-input" placeholder="Tìm sản phẩm...">
+
+<div class="sort-controls">
+    <button id="sort-asc">Sắp xếp giá: Thấp → Cao</button>
+    <button id="sort-desc">Sắp xếp giá: Cao → Thấp</button>
+</div>
+
+<ul id="product-list">
+    <li class="product-item">Bánh Chưng - 150000</li>
+    <li class="product-item">Bánh Tét - 120000</li>
+    <li class="product-item">Bánh Mì - 20000</li>
+</ul>
+
+    <script>
+        const sortAsc = document.getElementById("sort-asc");
+const sortDesc = document.getElementById("sort-desc");
+const productList = document.getElementById("product-list");
+
+sortAsc.addEventListener("click", function () {
+
+    let items = Array.from(document.querySelectorAll(".product-item"));
+
+    items.sort(function(a,b){
+
+        let priceA = Number(a.textContent.split("-")[1]);
+        let priceB = Number(b.textContent.split("-")[1]);
+
+        return priceA - priceB;
+
+    });
+
+    productList.innerHTML = "";
+
+    items.forEach(function(item){
+        productList.appendChild(item);
+    });
+
+});
+
+
+sortDesc.addEventListener("click", function () {
+
+    let items = Array.from(document.querySelectorAll(".product-item"));
+
+    items.sort(function(a,b){
+
+        let priceA = Number(a.textContent.split("-")[1]);
+        let priceB = Number(b.textContent.split("-")[1]);
+
+        return priceB - priceA;
+
+    });
+
+    productList.innerHTML = "";
+
+    items.forEach(function(item){
+        productList.appendChild(item);
+    });
+
+});
+    </script>
+
+</body>
+
+</html>

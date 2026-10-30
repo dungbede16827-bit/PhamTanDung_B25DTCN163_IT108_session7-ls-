@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K25_CNTT_HN Toast Notification</title>
+    <link rel="stylesheet" href="css.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>K25_CNTT_HN</h1>
+        <p>
+          Toast Notification <br />
+          System
+        </p>
+      </div>
+
+      <div class="demo-box">
+        <div class="live-status">
+          <span class="dot"></span> LIVE DEMO - TRIGGER TOASTS
+        </div>
+
+        <div class="button-grid">
+          <button class="btn btn-success">
+            <i class="fa-regular fa-circle-check"></i> Success
+          </button>
+
+          <button class="btn btn-error">
+            <i class="fa-regular fa-circle-xmark"></i> Error
+          </button>
+
+          <button class="btn btn-info">
+            <i class="fa-solid fa-circle-info"></i> Info
+          </button>
+
+          <button class="btn btn-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i> Warning
+          </button>
+        </div>
+      </div>
+
+      <div id="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let studentList = [
+        {id: 1 , name : "Nguyen Van A" ,age: 18 , gpa: 6.66 , status: "active" },
+        {id: 2 , name : "Nguyen Van b" ,age: 19 , gpa: 8.66 , status: "active" },
+        {id: 3 , name : "Nguyen Van c" ,age: 18 , gpa: 9.66 , status: "active" },
+
+
+        ];
+        let index = 4;
+        const showMenu = () => {
+            let choice = Number(prompt(`
+            Mời bạn nhập lựa chọn : 
+            1.Create Student
+            2.Read All Students
+            3.Filter Scholarship
+            4.Update Profile
+            5.Delete Record
+            6.Compliance Verify
+            7.Academic Stats
+            8.Data Normalization
+            0.Exit
+            Enter your choice: 
+            `))
+            return choice;
+        }
+        const createStudents = () => {
+            let fullname = prompt("Enter Student name")
+            if(isNaN(name) || name.trim() === "" ) return alert("Invalid nam or nam not empty");
+
+            let age = parseInt(prompt("Enter age:"));
+            if(age < 0 || age >1000) return alert("nhập tuổi đúng !");
+
+            let gpa = parseFloat(prompt("Enter GPA (0.0 - 10.0) :"))
+            if(gpa < 0 || gpa >10) return alert("nhập GPA đúng !"); 
+
+            let status = prompt("Enter status (active / inactive)")
+            if(status !== "active" || status !== "inactive") return alert("Invalid status!");
+
+            let newStudent = {
+                id: index++,
+                name: fullname,
+                age: age,
+                gpa: gpa,
+                status: status
+            }
+            studentList.push(newStudent)
+            alert(`student created successfully !\n ${newStudent.id} | Name: ${newStudent.name} | Age: ${newStudent.age} | GPA : ${newStudent.gpa} | Status : `)
+        }
+        // case 2 read all students
+        const realAllStudent = () => {
+            let infoStudent = studentList.map((student)=> `ID : ${student.id} Name : ${student.name} | AGE : ${student.age} | Gpa : ${student.gpa} | status ${student.status}`);
+            let result = alert(infoStudent)
+            return result;
+        }
+        // case 3 loc gpa > 8
+        const filterGPA = () => {
+            let studentGoodGpa = studentList.filter((value) => value.gpa >8 );
+            let result = studentGoodGpa.
+        }
+        const main = () => {
+            let condition = true; 
+            while(condition) {
+                switch(showMenu()) {
+                    case 1: {
+
+                        break;
+                    }
+                    case 1: {
+
+                        break;
+                    }
+                    case 2: {
+
+                        break;
+                    }
+                    case 3: {
+
+                        break;
+                    }
+                    case 4: {
+
+                        break;
+                    }
+                    case 5: {
+
+                        break;
+                    }
+                    case 6: {
+
+                        break;
+                    }
+                    case 7: {
+
+                        break;
+                    }
+                    case 8: {
+
+                        break;
+                    }
+                    case 0: {
+                        alert("GoodBye! Thank you for")
+                        condition = false;
+                        break;
+                    }
+                    default : {
+                        alert("Lựa chọn không hợp lệ");
+                    }
+                }
+            }
+        }
+        main()
+    </script>
+</body>
+</html>

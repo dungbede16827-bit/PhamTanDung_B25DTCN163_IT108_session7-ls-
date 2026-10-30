@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let n = Number(prompt("mời bạn khai báo số nguyên :"));
+
+        if(n % 2 === 0 ) {
+            document.write("số " + n + "là số chẵn <br>");
+            console.log("số " + n + "là số chẵn <br>")
+        } else {
+            document.write("số " + n + "là số lẻ <br>");
+            console.log("số " + n + "là số lẻ <br>")
+        }
+
+        if(n > 0) {
+          document.write("số " + n + "là số dương <br>"); 
+          console.log("số " + n + "là số dương <br>");
+        } else if( n < 0 ) {
+            document.write("số " + n + "là số âm <br>"); 
+            console.log("số " + n + "là số âm <br>");
+        } else {
+            document.write("số " + n + "là số 0 <br>"); 
+            console.log("số " + n + "là số 0 <br>");
+        }
+
+        if(n > 0) {
+            for (let i = 1 ; i <= n ; i++) {
+                document.write(i );
+                console.log(i );
+            }
+        } else {
+           alert("Giá trị n không hợp lệ để tạo dãy số <br>") ;
+        }
+
+    </script>
+</body>
+</html>

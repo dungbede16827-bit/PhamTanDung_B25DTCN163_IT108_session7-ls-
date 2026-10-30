@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+         box-sizing: border-box;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+        width: 300px;
+        
+    }
+    .submit-btn {
+        width: 30%;
+        margin-left: 40%;
+    }
+    .input-group {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .bg-blue {
+        background-color: blue;
+    }
+</style>
+<body>
+    <h1>DEmo Dom</h1>
+    <form action="" class="form" id="form">
+        <div class="input-group">
+            <label for="name">Họ và tên</label>
+        <input type="text" name="" id="name">
+        
+        </div>
+        <div class="input-group">
+            <label for="age">Tuổi</label>
+        <input type="number" id="age">
+        </div>
+        
+        <input type="submit" class="submit-btn">
+    </form>
+    <script>
+        console.log(document);
+        //truy cập phần tử trong DOM
+        let form = document.getElementById("form");
+        let inputGroup = document.getElementsByClassName("input-group");
+        let labelGroup = document.getElementsByTagName("label");
+
+        console.log(inputGroup[1]);
+        console.log(form);
+
+        //thuộc tính trong phần tử 
+        //Nội dung html bên trong phần tử
+        // console.log(form.innerHTML);
+        form.innerHTML += `<h3>Đây là nội dung mới bên trong thẻ form</h3> 
+        <button>Nút</button>`
+        // += là nối thêm chuỗi trên giao diện bằng thuộc tính += form.innerHTML
+        //Nội dung text bên trong phần tử
+        // console.log(form.textContent); //lấy khoảng trắng có nội dung text hiện lên
+        // console.log(form.innerText); // không lấy khoảng trắng của nội dung text hiện lên trên giao diện
+        console.log(form.classList)
+        form.classList.add("bg-blue"); // thêm class
+        form.classList.remove("bg-blue"); //  xóa class
+        
+        form.classList.toggle("bg-blue"); // công tắc (bật tắc- nếu chưa có thì thêm vào)
+
+
+    </script>
+</body>
+</html>

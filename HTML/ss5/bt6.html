@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ===== 1. Khai báo mảng =====
+let readerCardIds = [];
+let readerNames = [];
+let borrowedBookCodes = [];
+let overdueDays = [];
+
+// ===== 2. Nhập số bạn đọc =====
+let n = Number(prompt("Hôm nay có bao nhiêu bạn đọc bị ghi nhận quá hạn?"));
+
+for (let i = 0; i < n; i++) {
+    alert("Nhập thông tin bạn đọc thứ " + (i + 1));
+
+    // --- Nhập mã thẻ (duy nhất) ---
+    let cardId;
+    do {
+        cardId = prompt("Nhập mã thẻ bạn đọc:");
+        if (cardId === null) break;
+        cardId = cardId.trim();
+
+        if (cardId === "") {
+            alert("Mã thẻ không được để trống!");
+            continue;
+        }
+
+        if (readerCardIds.includes(cardId)) {
+            alert("Mã thẻ đã tồn tại!");
+            continue;
+        }
+
+        break;
+    } while (true);
+
+    // --- Nhập tên ---
+    let name;
+    do {
+        name = prompt("Nhập tên bạn đọc:");
+        if (name === null) break;
+        name = name.trim();
+
+        if (name === "") {
+            alert("Tên không được để trống!");
+            continue;
+        }
+        break;
+    } while (true);
+
+    // --- Nhập mã sách ---
+    let books = prompt("Nhập các mã sách đang mượn (cách nhau bởi dấu phẩy):");
+    if (books === null) books = "";
+
+    // --- Nhập số ngày quá hạn ---
+    let days;
+    do {
+        days = Number(prompt("Nhập số ngày quá hạn (>= 0):"));
+        if (days < 0 || isNaN(days)) {
+            alert("Số ngày không hợp lệ!");
+            continue;
+        }
+        break;
+    } while (true);
+
+    // --- Lưu vào mảng ---
+    readerCardIds.push(cardId);
+    readerNames.push(name);
+    borrowedBookCodes.push(books);
+    overdueDays.push(days);
+}
+
+    </script>
+</body>
+</html>

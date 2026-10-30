@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let studentList = [
+        {id: 1 , name : "Nguyen Van A" ,age: 18 , gpa: 6.66 , status: "active" },
+        {id: 2 , name : "Nguyen Van b" ,age: 19 , gpa: 8.66 , status: "active" },
+        {id: 3 , name : "Nguyen Van c" ,age: 18 , gpa: 9.66 , status: "active" },
+
+        ];
+        let choice;
+        while(choice !== 0) {
+         choice = Number(prompt(`
+            Mời bạn nhập lựa chọn : 
+            1.Create Student
+            2.Read All Students
+            3.Filter Scholarship
+            4.Update Profile
+            5.Delete Record
+            6.Compliance Verify
+            7.Academic Stats
+            8.Data Normalization
+            0.Exit
+            Enter your choice:
+         `));
+         switch(choice) {
+            case 1:
+                let name = prompt("thêm tên sinh viên");
+                if(isNaN(name) || name.trim() ==="") return alert("tên bạn nhập không hợp lệ");
+
+                let age = Number(prompt("nhập tuổi sinh viên"));
+                if(age < 0 || age >1000) return alert("nhập tuổi đúng !");
+                let gpa = Number(prompt("GPA trung bình :"));
+                if(gpa < 0 || gpa >10) return alert("nhập GPA đúng !");
+
+                let status = prompt("Enter status (active / inactive)")
+                if(status !== "active" || status !== "inactive") return alert("Invalid status!");
+
+                let id = studentList.length +1 ;
+
+                let newStd = {
+                    id:id,
+                    name:name,
+                    age:age,
+                    gpa:gpa,
+                    status:status
+                }
+                studentList.push(newStd);
+                console.log("thêm mới thành công !");
+                break;
+            case 2:
+                studentList.forEach((std) => {
+                    console.log(`id :${std.id} | name : ${std.name} | age :${std.age} | gpa:${std.gpa} | status:${std.status}`);
+                }
+            );
+                break;
+            case 3:
+                let checkgpa = studentList.filter(std => {
+                    return std.gpa > 8.0
+                });
+                console.table(checkgpa);
+                break;           
+            case 4:
+                update = Number(prompt("Mời bạn nhập Id để cập nhật"));
+                updateSTD = studentList.find(std => std.id === update);
+
+                if(updateSTD) {
+                    alert(`ID : ${updateSTD.id} | Name : ${updateSTD.name} | age : ${updateSTD.age} | gpa : ${updateSTD.gpa} | status : ${updateSTD.status} `);
+                    updateSTD.name = prompt("nhập tên mới ");
+                    updateSTD.age = Number(prompt("nhập tuổi mới :"));
+                    updateSTD.gpa = Number(prompt("nhập gpa mới : "));
+                    alert("cập nhật thành công"); 
+                }else {
+                    alert("không tìm thấy học sinh có Id này ");
+                }
+                break;
+            case 5:
+                let Delete = Number(prompt("mời bạn nhập Id để xóa "));
+                let index = studentList.findIndex((studen) => studen.id === Delete);
+                if(index !== -1) {
+                    studentList.splice(index,1);
+                    console.log("xóa sinh viên thành công !");
+                } else {
+                    console("không tìm thấy sinh viên với Id " + Delete);
+                }
+                break;
+            case 6:
+                let under18 = studentList.some(std => std.age < 18) ;
+                console.log("Có sinh viên dưới 18 tuổi không ?",(under18 ? "Yes" : "No"));
+
+                let isUniformActive = studentList.every(std => std.status === "active");
+
+                console.log("Tất cả có cùng trạng thái active không?", (isUniformActive ? "Yes" : "No"));
+
+
+                break;
+            case 7:
+                let totalGpa = studentList.reduce((sum,ptd) => {
+                    return sum + ptd.gpa;
+                },0);
+                let trungbinh = totalGpa / studentList.length;
+                console.log("Điểm Trung Bình: ", trungbinh);
+                break;
+            case 8:
+                let listName = studentList.map(name => name.toUpperCase());
+                console.log("Mảng gốc: ",studentList);
+                console.log("Mảng chuẩn hóa: ", listName)
+                break;
+
+            case 0:
+                alert("Cảm ơn bạn đã sử dụng chương trình !");
+                return;
+            default:
+                alert("Lựa chọn không hợp lệ, vui lòng thử lại !");
+         }
+            
+        }
+    </script>
+</body>
+</html>

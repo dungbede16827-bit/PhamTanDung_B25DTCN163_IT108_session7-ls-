@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tong = 0;
+        let giaTien = [100, 200, 300, 400];
+        for(let v of giaTien) {
+            console.log(v);
+        }
+        for(let v in giaTien) {
+            console.log(v);
+        }
+        
+        for(let i = 0 ; i < giaTien.length ; i++) {
+            if(i % 2 === 0) {
+                tong += giaTien[i];
+            }
+        }
+        console.log("tổng các ptu từ vị trí chẵn là " + tong);
+    </script>
+</body>
+</html>

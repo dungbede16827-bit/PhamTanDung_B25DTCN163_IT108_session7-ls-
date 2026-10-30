@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let student = [
+            { id: "SV001", name: "Nguyễn Văn An", age: 20, gpa: 8.2, status: "active" },
+            { id: "SV002", name: "Trần Thị Bình", age: 19, gpa: 7.5, status: "active" },
+            { id: "SV003", name: "Lê Hoàng Nam", age: 22, gpa: 6.8, status: "inactive" },
+            { id: "SV004", name: "Phạm Minh Tuấn", age: 18, gpa: 9.1, status: "active" },
+            { id: "SV005", name: "Hoàng Thị Mai", age: 23, gpa: 5.9, status: "inactive" }
+        ];
+        const showMenu = () => {
+            let choice = Number(prompt(`
+            Mời bạn nhập lựa chọn : 
+                 1   Create Student
+                 2   Update Student
+                 3   Soft Delete Student
+                 4   Restore Student
+                 5   View Students (Pipeline Mode)
+                 6   Analytics Dashboard
+                 7   Exit
+            Enter your choice: 
+            `))
+            return choice;
+        }
+        function createStudent() {
+            let id;
+            while(true) {
+                id = prompt("Nhập ID (duy nhất), ví dụ SV001:");
+                if(!id || id.trim() === "") {
+                    alert("ID không được để trống");
+                    continue;
+                }
+                if(student.some(st => st.id === id )) {
+                    alert("ID đã tồn tại không được trùng");
+                    
+                } else {
+                    break;
+                }
+            }
+            let name;
+            while(true) {
+                name = prompt("Nhập tên sinh viên:")
+                if(!name || name.trim() === "") {
+                    alert("tên khong được để trống !");
+                    continue;
+                }
+                name = name.trim();
+                break;
+            }
+
+            let age;
+            while(true) {
+                age = +prompt("nhập tuổi sinh viên:") 
+                if(isNaN(age) || age < 0 || age > 60) {
+                    alert("❌ Tuổi phải là số nguyên hợp lệ. Vui lòng nhập lại.");
+                    continue;
+                } else {
+                    break;
+                }
+
+            }
+            let gpa;
+            while(true) {   
+                gpa = +prompt("nhập GPA sinh viên:") 
+                if(isNaN(gpa) || gpa < 0 || gpa > 10) {
+                    alert("❌ GPA phải là số hợp lệ từ 0.0 đến 10.0. Vui lòng nhập lại.");
+                    continue;
+                } else {
+                    break;
+                }
+
+            }
+            student.push({
+                id: id,
+                name: name,
+                age: age,
+                gpa: gpa,
+                status: "active",
+                create: Date.now()
+            });
+            alert(`✅ Sinh viên ${name} đã được tạo thành công!`);
+
+        }
+        function updateStudent() {
+            let id = prompt("nhập ID sinh viên cần cập nhật:");
+            let updateStudent = student.find(std => std.id === id)
+            if(!updateStudent) {
+                alert("không tìm thấy sinh viên nào ");
+                return;
+            }
+            let newName = prompt("nhập tên mới (bỏ trống để giữ nguyên )");
+            if(newName || newName.trim() !== "") {
+                updateStudent.name = newName.trim();
+            }
+            let age = prompt("nhập tuổi mới (bỏ trống để giữ nguyên)");
+            if(age || age.trim() !== "" ) {
+                age = Number(age);
+                if(isNaN(age) ||  age < 16 || age > 60) {
+                    alert("❌ Tuổi phải từ 16–60!");
+                    return
+                }
+                updateStudent.age = age;
+            }
+
+            let gpa = prompt("nhập gpa mới (bỏ trống để giữ nguyên )") 
+            if(gpa || gpa.trim() !== "")  {
+                gpa = Number(gpa);
+                if(isNaN(gpa) || gpa < 0 || gpa > 10) {
+                    alert("❌ GPA phải từ 0–10!");
+                    return;
+                }
+                updateStudent.gpa = gpa;
+            }
+            let newStatus = prompt("nhập trạng thái mới (active/inactive) (bỏ trống để giữ nguyên )");
+            if(newStatus || newStatus.trim() !== "") {
+                newStatus = newStatus.trim().toLowerCase();
+                if(newStatus !== "active" && newStatus !== "inactive") {
+                    alert("❌ Trạng thái phải là 'active' hoặc 'inactive'!");
+                    return;
+                }
+                updateStudent.status = newStatus;
+            }
+            updateStudent.update = Date.now();
+            alert(`✅ Sinh viên ${updateStudent.name} đã được cập nhật thành công!`);
+
+        }
+        function cmbStudent() {
+            let id = prompt("nhập Id sinh viên cần phục hồi");
+            let cmbStudent = student.find(std => std.id === id);
+            if(!cmbStudent) {
+                alert("không tìm thấy sinh viên nào ");
+                return;
+            }
+            if(cmbStudent.status === "active") {
+                alert("sinh viên này đã là active không cần phục hồi ");
+                return;
+            }
+            if (cmbStudent.status !== "inactive" || !cmbStudent.deletedAt) {
+                        alert("⚠ Sinh viên này không ở trạng thái có thể phục hồi!");
+                        return;
+            }
+            cmbStudent.status = "active";
+            cmbStudent.update = Date.now(); 
+            alert(`✅ Sinh viên ${cmbStudent.name} đã được phục hồi thành công!`);
+        }
+        function deleteStudent() {
+            let id = prompt("nhập Id sinh viên cần xóa");
+            let deleteStudent = student.find(std => std.id === id);
+            if(!deleteStudent) {
+                alert("không tìm thấy sinh viên nào ");
+                return;
+            }
+            if(deleteStudent.status === "inactive") {
+                alert("sinh viên này đã là inactive không cần xóa ");
+                return;
+            }
+            deleteStudent.status = "inactive";
+            deleteStudent.deletedAt = Date.now(); 
+            alert(`✅ Sinh viên ${deleteStudent.name} đã được xóa thành công!`);
+        }
+
+        const main = () => {
+            let choice;
+            do {
+                choice = showMenu();
+                switch(choice) {
+                    case 1: {
+                        createStudent();
+                        break;
+                    }
+                    case 2: {
+                        updateStudent();
+
+                        break;
+                    }
+                    case 3: {
+                        deleteStudent();
+                        break;
+                    }
+                    case 4: {
+                        cmbStudent()
+                        break;
+                    }
+                    case 5: {
+
+                        break;
+                    }
+                    case 6: {
+
+                        break;
+                    }
+                    case 7: {
+                        alert("GoodBye!");
+                        break;
+                    }
+                    default : {
+                        alert("lựa chọn không hợp lệ");
+                    }
+                }
+            }while(choice != 7)
+        }
+        main();
+
+    </script>
+</body>
+
+</html>

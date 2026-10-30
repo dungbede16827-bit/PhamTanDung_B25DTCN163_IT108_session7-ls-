@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let books = ["Nha Gia Kim", "Dac Nhan Tam", "Tuan Lam Viec 4 Gio"];
+let choice, nameBook, borrowBook, oldBook;
+
+do {
+  choice = +prompt(
+    `--THƯ VIỆN KHOA HỌC--
+1. Xem danh sách
+2. Nhập sách mới
+3. Mượn sách (Xóa)
+4. Sửa tên sách
+5. Sắp xếp kệ
+0. Thoát
+Nhập lựa chọn:`,
+  );
+
+  switch (choice) {
+    case 1:
+      console.log(`Số lượng sách hiện có: ${books.length}`);
+      for (let i = 0; i < books.length; i++) {
+        console.log(`${i + 1}. ${books[i]}`);
+      }
+      break;
+
+    case 2:
+      nameBook = prompt("Nhập tên sách:");
+      books.push(nameBook);
+      alert("Đã thêm thành công!");
+      break;
+
+    case 3:
+      borrowBook = prompt("Nhập tên cuốn sách muốn mượn:");
+      let index = books.indexOf(borrowBook);
+
+      if (index === -1) {
+        alert("Không có sách này trong kho");
+      } else {
+        books.splice(index, 1);
+        alert("Đã cho mượn sách " + borrowBook);
+      }
+      break;
+
+    case 4:
+      borrowBook = prompt("Nhập tên sách cũ cần sửa:");
+      let isExist = books.includes(borrowBook);
+
+      if (!isExist) {
+        alert("Không có sách này trong kho");
+      } else {
+        let newName = prompt("Nhập tên sách mới:");
+        let index = books.indexOf(borrowBook);
+        books[index] = newName;
+        alert("Đã sửa tên sách");
+      }
+      break;
+
+    case 5:
+      books.sort();
+      alert("Xắp xếp thành công!");
+      console.log(books);
+      break;
+
+    case 0:
+      alert("See you later!");
+      break;
+  }
+} while (choice !== 0);
+
+    </script>
+</body>
+</html>

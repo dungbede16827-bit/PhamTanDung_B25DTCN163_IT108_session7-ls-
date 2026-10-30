@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let bookName = prompt("Tên sách :");
+        let tenNguoiMuon = prompt("tên người mượn");
+        let tinhTrangSach = prompt ("Tình trạng sách (có sẵn hay đã mượn không có sẵn)");
+        let soNgayMuon = prompt("số ngày mượn");
+        let theThuVien = prompt("Có thẻ thư viện hay không có/không");
+
+        if (tinhTrangSach === "có sẵn" || theThuVien == "có" ) {
+            document.write("Chúc mừng, bạn có thể mượn sách này");
+        } else if (tinhTrangSach === "đã mượn" || soNgayMuon < 30 ) {
+            if (theThuVien == "có") {
+                document.write("Sách đang được mượn, vui lòng đợi đến khi trả lại");
+            } else {
+                document.write("Bạn không thể mượn sách nếu không có thẻ thư viện");
+            }
+        } else if (tinhTrangSach == "không có sẵn") {
+            document.write("Sách này hiện tại không có sẵn trong thư viện, bạn có thể đăng ký mượn sau")
+        } else {
+             document.write("Thông tin không hợp lệ, vui lòng nhập lại");
+        }
+    </script>
+</body>
+</html>

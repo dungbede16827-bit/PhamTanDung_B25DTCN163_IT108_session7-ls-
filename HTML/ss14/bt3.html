@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <li class="item">
+    Bánh Chưng - 150000 VND
+    <button class="delete">Xóa</button>
+</li>
+</body>
+<script>
+    const li = document.createElement("li");
+    li.className = "item";
+    li.innerHTML =`
+    ${name} - ${price} VND 
+    <button class="delete">Xóa</button>
+    `
+    const deleteItem = li.querySelector(".delete")
+    deleteBtn.addEventListener("click", function(){
+
+    const confirmDelete = confirm("Bạn có chắc muốn xóa sản phẩm này?");
+
+    if(confirmDelete){
+        li.remove();
+    }
+
+    });
+</script>
+</html>

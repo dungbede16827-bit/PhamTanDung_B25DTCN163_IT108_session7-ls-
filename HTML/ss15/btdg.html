@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    form , h1 {
+        margin: 20px;
+    }
+</style>
+<body>
+    <form action="" id="form">
+    <h1>Đăng ký</h1>
+    <br>
+    
+    <label for="">Email</label>
+    <br>
+    <input type="email" id="email">
+    <br>
+    
+    <label for=""> Mật khẩu</label>
+    <br>
+    <input type="password" id="password">
+    <br>
+    <label for="">nhập lại mật khẩu</label>
+    <br>
+    <input type="password" id="passwordConfirm">
+    <br>
+
+    <br>
+    <button>Đăng ký</button>
+    </form>
+    <script>
+        let form = document.getElementById('form');
+        form.addEventListener('submit',(value) => {
+            value.preventDefault();
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let passWordCheck = document.getElementById('passwordConfirm').value;
+            console.log('email:', email ,'password :', password ,' passWordCheck :', passWordCheck);
+
+
+        });
+
+
+    </script>
+</body>
+</html>

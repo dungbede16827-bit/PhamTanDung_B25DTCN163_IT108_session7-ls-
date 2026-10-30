@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial;
+        background: #f4efe6;
+        display: flex;
+        justify-content: center;
+        padding-top: 40px;
+    }
+
+    .container {
+        width: 420px;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+        background: #d62828;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 20px;
+        margin: 0;
+    }
+
+    .todo {
+        background: #f3e8d1;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-left: 6px solid orange;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .done {
+        background: #dbe7dd;
+        border-left: 6px solid green;
+        text-decoration: line-through;
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+        padding-bottom: 15px;
+    }
+    .add-box{
+display:flex;
+gap:10px;
+padding:15px;
+}
+
+.add-box input{
+flex:1;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.add-box button{
+padding:10px 15px;
+background:#d62828;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.add-box button:hover{
+background:#b91c1c;
+}
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>Công việc chuẩn bị Tết</h1>
+            <p>Click để đánh dấu hoàn thành</p>
+        </div>
+
+        <div class="add-box">
+            <input id="todoInput" type="text" placeholder="Nhập công việc mới..." />
+            <button id="addBtn">Thêm</button>
+        </div>
+
+        <ul id="todoList"></ul>
+
+        <p class="footer">
+            Trạng thái được lưu tự động vào localStorage • Refresh để kiểm tra
+        </p>
+
+    </div>
+
+</body>
+<script>
+    const initialTodos = [
+        { id: 1, task: "Mua bánh chưng", done: false },
+        { id: 2, task: "Dọn nhà đón Tết", done: false },
+        { id: 3, task: "Gói bánh chưng", done: false },
+        { id: 4, task: "Trang trí nhà cửa bằng hoa mai, hoa đào", done: false },
+        { id: 5, task: "Mua phong bao lì xì", done: false },
+        { id: 6, task: "Chuẩn bị mâm ngũ quả", done: false }
+    ];
+    let todos = [];
+
+    const todoList = document.getElementById("todoList");
+
+    function loadTodos() {
+
+        const data = localStorage.getItem("myTodos");
+
+        if (data) {
+            todos = JSON.parse(data);
+        } else {
+            todos = initialTodos;
+            localStorage.setItem("myTodos", JSON.stringify(todos));
+        }
+
+    }
+
+    function renderTodos() {
+
+        todoList.innerHTML = "";
+
+        todos.forEach(todo => {
+
+            const li = document.createElement("li");
+
+            li.className = "todo";
+
+            if (todo.done) {
+                li.classList.add("done");
+            }
+
+            li.innerHTML = `
+${todo.done ? "✔️" : "⭕"} ${todo.task}
+`;
+
+            li.onclick = function () {
+                toggleTodo(todo.id);
+            }
+
+            todoList.appendChild(li);
+
+        });
+
+    }
+
+    function toggleTodo(id) {
+
+        todos = todos.map(todo => {
+
+            if (todo.id === id) {
+                return { ...todo, done: !todo.done }
+            }
+
+            return todo;
+
+        });
+
+        localStorage.setItem("myTodos", JSON.stringify(todos));
+
+        renderTodos();
+
+    }
+
+    function init() {
+
+        loadTodos();
+
+        renderTodos();
+
+    }
+
+    window.onload = init;
+
+    const todoInput = document.getElementById("todoInput");
+const addBtn = document.getElementById("addBtn");
+function addTodo(){
+
+const task = todoInput.value.trim();
+
+if(task === ""){
+alert("Vui lòng nhập công việc");
+return;
+}
+
+const newTodo = {
+id: Date.now(),
+task: task,
+done: false
+};
+
+todos.push(newTodo);
+
+localStorage.setItem("myTodos", JSON.stringify(todos));
+
+renderTodos();
+
+todoInput.value="";
+}
+
+addBtn.addEventListener("click", addTodo);
+
+todoInput.addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+addTodo();
+}
+});
+
+        
+</script>
+
+</html>

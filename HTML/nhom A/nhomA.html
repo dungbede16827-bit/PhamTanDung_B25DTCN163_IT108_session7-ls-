@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<style>
+    button span:first-child {
+        display: none;
+        
+    }
+    .dark {
+        background: black;
+        
+    }
+    .dark span:first-child {
+        display: inline;
+    }
+    .dark span:last-child {
+        display: none;
+    }
+    
+</style>
+
+<body class="dark">
+    <button id="change-color" ><span class="material-symbols-outlined">
+            light_mode
+        </span>
+        <span class="material-symbols-outlined">
+dark_mode
+</span>
+    </button>
+</body>
+<script>
+    let theme = document.getElementById("change-color");
+    
+    let get = localStorage.getItem("theme");
+    if(get === "dark") {
+    enabLeDarkMode()
+    } else {
+        dissableDarkMode()
+    }
+    
+    function enabLeDarkMode() {
+        document.body.classList.add("dark");
+        localStorage.setItem("theme","dark");
+        get = "dark";
+    }
+    function dissableDarkMode() {
+        document.body.classList.remove("dark");
+         localStorage.setItem("theme","light");
+         get = "light"
+    }
+    theme.addEventListener("click",() => {
+        get === "light" ? enabLeDarkMode() : dissableDarkMode() ;
+    })
+</script>
+
+</html>

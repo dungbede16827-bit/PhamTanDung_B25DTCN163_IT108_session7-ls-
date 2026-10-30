@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const player = {
+            name: "De Bruyne",
+            position: "Midfielder",
+            goals: 8,
+            assists: 25,
+            matchesPlayer: 35,
+        };
+        function addPerformanceScore(player) {
+            const pfmPM = (player.goals + player.assists)/player.matchesPlayer
+            player.isKeyPlayer = pfmPM > 1 ;
+        console.log(`
+        Name: ${player.name}
+        Position: ${player.position}
+        Goals: ${player.goals}
+        Assists: ${player.assists}
+        MatchesPlayer: ${player.matchesPlayer}
+        Performance Per Match: ${pfmPM.toFixed(2)}
+        isKeyPlayer : ${player.isKeyPlayer}
+        `)     
+        }
+        
+
+    </script>
+</body>
+</html>

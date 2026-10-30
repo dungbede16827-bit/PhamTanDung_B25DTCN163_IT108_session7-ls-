@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let tenSach = prompt("ten sach : ")
+        let tenNguoiMuon = prompt("ten nguoi muon : ")
+        let mucDoYeuThich = prompt("một giá trị từ 1 đến 5, với 1 là ít thích nhất và 5 là rất thích")
+        
+        if (mucDoYeuThich > 3) {
+            document.write("Đây là cuốn sách yêu thích của bạn, hãy đọc ngay!");
+        } else if (mucDoYeuThich == 3 ) {
+            document.write("Sách này khá ổn, có thể mượn");
+        } else if (mucDoYeuThich <= 2 ) {
+           document.write("Sách này bạn có thể cân nhắc mượn lại sau"); 
+        } else {
+            document.write("so ban nhap khong hop le...");
+        }
+    </script>
+</body>
+</html>

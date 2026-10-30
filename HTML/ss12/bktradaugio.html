@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let products = [
+            { id: "P01", name: "Laptop MacBook Pro M3", price: 2000,category: "Laptop",inStock: true},
+            { id: "P02", name: "Chuột không dây Logitech", price: 45,category: "Phụ kiện",inStock: true},
+            { id: "P03", name: "Bàn phím cơ Keychron", price: 95,category: "Phụ kiện",inStock: false},
+            { id: "P04", name: "màn hình Dell UltraSharp", price: 450,category: "Màn hình",inStock: true},
+            { id: "P05", name: "Tai nghe Sony WH-1000XM5", price: 350,category: "Phụ kiện",inStock: true}
+        ];  
+
+            
+            const list = () => {
+                let check = products
+                .filter((value) => value.inStock === true)
+                .sort((a,b) => b.price - a.price)
+                    .map((value) => `id: ${value.id} | name: ${value.name} | price: ${value.price} | category : ${value.category} | Trạng thái ${value.inStock}`);
+                    console.log(check)
+                    .join("\n");
+                console.log(check);
+
+            }
+
+            function search() {
+               let  productsFilter = products.filter(prd => prd.category === "Phụ kiện");
+               productsFilter.forEach(prd => {
+                console.log(prd.name);
+               });
+            } 
+            search();
+
+            function reducePrd() {
+                let result = products
+                .filter(tr => tr.inStock === true) 
+                .reduce((max,i) => max += i.price,0);
+                console.log(`toongt giá sản phẩm còn hàng : ${result}`);
+            }
+            reducePrd();
+            list();
+    </script>
+</body>
+</html>

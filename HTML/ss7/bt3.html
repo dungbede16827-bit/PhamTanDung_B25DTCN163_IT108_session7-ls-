@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let player = [];
+        let Number;
+        let id, name, position;
+        let isDuplicate, isEmpty;
+
+        for (let i = 0; i < soLuong; i++) {
+            let id, name, position;
+            let isDuplicate, isEmpty;
+
+            function printTeamRoster() {
+                console.log("===== DANH SÁCH CẦU THỦ =====");
+                for (let i = 0; i < players.length; i++) {
+                    let arr = players[i].split("-");
+                    console.log((i + 1) + ". Mã: " + arr[0] +
+                        " | Tên: " + arr[1] +
+                        " | Vị trí: " + arr[2]);
+                }
+            }
+            function pushPlayer(name, position) {
+                let id;
+                let isDuplicate;
+
+                // nhập mã mới không trùng
+                do {
+                    id = prompt("Nhập mã cầu thủ mới:");
+                    isDuplicate = false;
+
+                    for (let i = 0; i < players.length; i++) {
+                        let arr = players[i].split("-");
+                        if (arr[0] === id) {
+                            isDuplicate = true;
+                            alert("❌ Mã cầu thủ bị trùng!");
+                            break;
+                        }
+                    }
+                } while (isDuplicate || id.trim() === "");
+
+                let player = id + "-" + name + "-" + position;
+                players.push(player);
+                alert("✅ Thêm cầu thủ thành công!");
+            }
+
+
+
+            // nhập mã cầu thủ (không trùng)
+            do {
+                id = prompt("Nhập mã cầu thủ thứ " + (i + 1) + " (VD: P001):");
+                isDuplicate = false;
+                isEmpty = (id === null || id.trim() === "");
+
+                for (let j = 0; j < players.length; j++) {
+                    let arr = players[j].split("-");
+                    if (arr[0] === id) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (isEmpty) alert(" Mã cầu thủ không được để trống!");
+                else if (isDuplicate) alert(" Mã cầu thủ bị trùng!");
+
+            } while (isEmpty || isDuplicate);
+
+            // nhập tên cầu thủ (không trống)
+            do {
+                name = prompt("Nhập tên cầu thủ:");
+                isEmpty = (name === null || name.trim() === "");
+                if (isEmpty) alert(" Tên cầu thủ không được để trống!");
+            } while (isEmpty);
+
+            // nhập vị trí
+            let choice;
+            do {
+                choice = Number(prompt("Chọn vị trí:\n1. Thủ môn\n2. Hậu vệ\n3. Tiền vệ\n4. Tiền đạo"));
+            } while (![1, 2, 3, 4].includes(choice));
+
+            switch (choice) {
+                case 1: position = "Thủ môn"; break;
+                case 2: position = "Hậu vệ"; break;
+                case 3: position = "Tiền vệ"; break;
+                case 4: position = "Tiền đạo"; break;
+            }
+
+            // ghép chuỗi và lưu vào mảng
+            let player = id + "-" + name + "-" + position;
+            players.push(player);
+        }
+
+    </script>
+</body>
+
+</html>

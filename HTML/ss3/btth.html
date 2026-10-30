@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let matKhauDung = "admin123";
+        let matKhauNhap;
+        let soLan = 0;
+        let tongTien = 0;
+
+        do {
+            matKhauNhap = prompt("nhập mật khẩu")
+            if (matKhauNhap === matKhauDung) {
+                alert("bạn đã nhập mật khẩu đúng ")
+                break;
+            } else {
+                soLan++;
+                alert("Sai mật khẩu! Lần " + soLan + "/3");
+            }
+            if (soLan === 3 ) {
+                alert("hệ thống bị khóa");
+                return;
+            }
+
+            
+        } while (soLan < 3)
+
+        while (true) {
+        let chon = prompt(`
+        ===== MENU =====
+        1. Nhập lô sách mới
+        2. Vẽ sơ đồ kệ sách
+        3. Thoát
+        `);
+        switch (chon) {
+            case "1":
+                let soSach = Number(prompt("Bạn muốn nhập bao nhiêu cuốn sách ?"));
+                for(let i=1 ; i<= soSach ; i++) {
+                    let gia = Number(prompt("nhập giá cuốn sách thứ " + i ));
+                    if(gia <= 0) {
+                        alert("giá không hợp lệ , vui lòng nhập lại");
+                        continue;
+                    }
+                    tongTien += gia;
+                    alert("Tổng giá trị nhập kho đợt này là: " + tongTien);
+                }
+
+            case "2":
+                for(let khu = 1 ; khu <=3 ; khu++) {
+                    for(let ke = 1 ; ke <= 5 ; ke++){
+                        if(khu ===2 && ke === 3) {
+                            console.log("khu vực 2 - kệ 3 (đang sửa chữa)");
+                            continue;
+                        }
+                       console.log("Khu vực " + khu + " - Kệ " + ke); 
+                    }
+                }
+
+            case "3":
+                alert("bạn đã chọn thoát");
+                return ;
+            default:
+                alert("lựa chọn không khớp");
+        }
+        
+
+        }
+    </script>
+</body>
+</html>

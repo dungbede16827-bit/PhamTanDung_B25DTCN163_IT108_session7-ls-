@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Quản Lý Nhân Viên</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-soft: #dbeafe;
+    --danger: #dc2626;
+    --bg: #f4f4f5;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #9ca3af;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 16px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .form-section,
+  .table-section {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+  }
+
+  .required {
+    color: var(--danger);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  select:focus {
+    border-color: var(--primary);
+  }
+
+  .error {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.8rem;
+    color: var(--danger);
+    min-height: 16px;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .btn {
+    border: none;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease, color 0.1s ease;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(148, 163, 184, 0.1);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .table-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    font-size: 0.8rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  thead {
+    background: #f9fafb;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f9fafb;
+  }
+
+  tbody tr:hover {
+    background: #eff6ff;
+  }
+
+  .actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .btn-sm {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+  }
+
+  .btn-edit {
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+  }
+
+  .btn-edit:hover {
+    background: rgba(34, 197, 94, 0.25);
+  }
+
+  .btn-delete {
+    background: rgba(239, 68, 68, 0.08);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-delete:hover {
+    background: rgba(239, 68, 68, 0.25);
+  }
+
+  .footer {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      margin: 12px auto;
+    }
+
+    .form-section,
+    .table-section {
+      padding: 14px;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Quản Lý Nhân Viên</h1>
+    </header>
+
+    <section class="form-section">
+      <form>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName">Họ và tên <span class="required">*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="Nhập họ và tên" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="vd: ten@gmail.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Ngày sinh <span class="required">*</span></label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" />
+          </div>
+
+          <div class="form-group">
+            <label for="position">Chức vụ <span class="required">*</span></label>
+            <select id="position" name="position">
+              <option value="">-- Chọn chức vụ --</option>
+              <option value="Nhân viên">Nhân viên</option>
+              <option value="Trưởng nhóm">Trưởng nhóm</option>
+              <option value="Trưởng phòng">Trưởng phòng</option>
+              <option value="Giám đốc">Giám đốc</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Thêm Nhân Viên</button>
+          <button type="reset" class="btn btn-secondary">Nhập Lại</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <div class="table-header">
+        <h2>Danh Sách Nhân Viên</h2>
+        <span class="badge">3 nhân viên</span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Họ và tên</th>
+              <th>Email</th>
+              <th>Ngày sinh</th>
+              <th>Chức vụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Nguyễn Văn A</td>
+              <td>a.nguyen@example.com</td>
+              <td>01/01/1995</td>
+              <td>Nhân viên</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Trần Thị B</td>
+              <td>b.tran@example.com</td>
+              <td>12/03/1993</td>
+              <td>Trưởng nhóm</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Lê Văn C</td>
+              <td>c.le@example.com</td>
+              <td>20/07/1990</td>
+              <td>Trưởng phòng</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Tổng số nhân viên: 3</span>
+    </footer>
+  </div>
+  <script>
+
+var form = document.querySelector("form");
+
+var fullNameInput = document.getElementById("fullName");
+var emailInput = document.getElementById("email");
+var dobInput = document.getElementById("dateOfBirth");
+var positionInput = document.getElementById("position");
+
+var tableBody = document.querySelector("tbody");
+var badge = document.querySelector(".badge");
+var footerTotal = document.querySelector(".footer span");
+
+var employees = [
+  { id: 1, name: "Nguyễn Văn A", email: "a.nguyen@example.com", dob: "1995-01-01", position: "Nhân viên" },
+  { id: 2, name: "Trần Thị B", email: "b.tran@example.com", dob: "1993-03-12", position: "Trưởng nhóm" },
+  { id: 3, name: "Lê Văn C", email: "c.le@example.com", dob: "1990-07-20", position: "Trưởng phòng" }
+];
+
+var editId = null;
+
+
+function formatDate(dateStr) {
+
+  var date = new Date(dateStr);
+
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+
+  return day + "/" + month + "/" + year;
+}
+
+
+
+function renderTable() {
+
+  tableBody.innerHTML = "";
+
+  for (var i = 0; i < employees.length; i++) {
+
+    var emp = employees[i];
+
+    var tr = document.createElement("tr");
+
+    var html = "";
+    html += "<td>" + emp.id + "</td>";
+    html += "<td>" + emp.name + "</td>";
+    html += "<td>" + emp.email + "</td>";
+    html += "<td>" + formatDate(emp.dob) + "</td>";
+    html += "<td>" + emp.position + "</td>";
+    html += "<td class='actions'>";
+    html += "<button class='btn btn-sm btn-edit'>Sửa</button>";
+    html += "<button class='btn btn-sm btn-delete'>Xóa</button>";
+    html += "</td>";
+
+    tr.innerHTML = html;
+
+    var editBtn = tr.querySelector(".btn-edit");
+    var deleteBtn = tr.querySelector(".btn-delete");
+
+    editBtn.onclick = (function(id) {
+      return function() {
+        startEdit(id);
+      }
+    })(emp.id);
+
+    deleteBtn.onclick = (function(id) {
+      return function() {
+        deleteEmployee(id);
+      }
+    })(emp.id);
+
+    tableBody.appendChild(tr);
+  }
+
+  updateStats();
+}
+
+
+
+function updateStats() {
+
+  var total = employees.length;
+
+  badge.textContent = total + " nhân viên";
+
+  footerTotal.textContent = "Tổng số nhân viên: " + total;
+}
+
+
+
+function validateForm(name, email, dob, position) {
+
+  if (name === "" || email === "" || dob === "" || position === "") {
+    alert("Vui lòng nhập đầy đủ thông tin");
+    return false;
+  }
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    alert("Email không hợp lệ");
+    return false;
+  }
+
+  return true;
+}
+
+
+
+form.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  var name = fullNameInput.value.trim();
+  var email = emailInput.value.trim();
+  var dob = dobInput.value;
+  var position = positionInput.value;
+
+  var check = validateForm(name, email, dob, position);
+
+  if (check === false) {
+    return;
+  }
+
+  if (editId !== null) {
+
+    for (var i = 0; i < employees.length; i++) {
+
+      if (employees[i].id === editId) {
+
+        employees[i].name = name;
+        employees[i].email = email;
+        employees[i].dob = dob;
+        employees[i].position = position;
+
+        break;
+      }
+    }
+
+    editId = null;
+
+  } else {
+
+    var newId;
+
+    if (employees.length === 0) {
+      newId = 1;
+    } else {
+      newId = employees[employees.length - 1].id + 1;
+    }
+
+    var newEmployee = {
+      id: newId,
+      name: name,
+      email: email,
+      dob: dob,
+      position: position
+    };
+
+    employees.push(newEmployee);
+  }
+
+  form.reset();
+
+  renderTable();
+});
+
+
+
+function startEdit(id) {
+
+  var emp = null;
+
+  for (var i = 0; i < employees.length; i++) {
+
+    if (employees[i].id === id) {
+      emp = employees[i];
+      break;
+    }
+  }
+
+  if (emp !== null) {
+
+    fullNameInput.value = emp.name;
+    emailInput.value = emp.email;
+    dobInput.value = emp.dob;
+    positionInput.value = emp.position;
+
+    editId = id;
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+}
+
+
+
+function deleteEmployee(id) {
+
+  var empName = "";
+
+  for (var i = 0; i < employees.length; i++) {
+
+    if (employees[i].id === id) {
+      empName = employees[i].name;
+      break;
+    }
+  }
+
+  var confirmDelete = confirm("Bạn có chắc muốn xóa nhân viên " + empName + "?");
+
+  if (confirmDelete === true) {
+
+    var newArray = [];
+
+    for (var i = 0; i < employees.length; i++) {
+
+      if (employees[i].id !== id) {
+        newArray.push(employees[i]);
+      }
+    }
+
+    employees = newArray;
+
+    if (editId === id) {
+      form.reset();
+      editId = null;
+    }
+
+    renderTable();
+  }
+}
+
+
+
+renderTable();
+
+</script>
+</body>
+
+</html>

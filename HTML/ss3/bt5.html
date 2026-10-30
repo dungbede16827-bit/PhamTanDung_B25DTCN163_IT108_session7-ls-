@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let ycxl = 0;
+        let ycbtc = 0 ;
+        let dtc = 0 ;
+        let cxd = 0 ;
+
+
+        while(true) {
+
+            let tiepTuc = prompt("Có yêu cầu đặt mượn trước mới không? (có/không)").toLowerCase().trim();
+            if (tiepTuc === "không") {
+        
+            break; 
+            }else if (tiepTuc === "có") {
+                let tenBanDoc = prompt("tên bạn đọc :");
+                let maSach = prompt("mã sách muốn đặt trước");
+                let tenSach = prompt("tên sách :");
+                let soNgayCho = -1 ;
+
+                while (soNgayCho < 0 ) {
+                    soNgayCho = prompt("Nhập Số lượng thực tế đang có (số nguyên >= 1):");
+                }
+                let uuTien = -1;
+                while (uuTien !== 1 && uuTien !== 2 && uuTien !==3 ) {
+                    uuTien = prompt("1 = Sinh viên bình thường ,2 = Giảng viên/Nghiên cứu sinh ,3 = Nhân viên thư viện / Đặc cách");
+                }
+                ycxl++;
+
+                if(soNgayCho > 45 ) {
+                    alert("Từ chối: Thời gian chờ quá lâu (>45 ngày)");
+                    ycbtc++;
+                } else if (uuTien == 3) {
+                    alert("Đặt trước thành công - Ưu tiên đặc cách cao nhất");
+                    dtc++;
+                } else if (uuTien ==2 && soNgayCho <= 30) {
+                    alert("Đặt trước thành công - Ưu tiên giảng viên/nghiên cứu");
+                    dtc++;
+                } else if (uuTien == 1 && soNgayCho <= 21) {
+                    alert("Đặt trước thành công");
+                    dtc++;
+                } else {
+                    alert("Đặt trước tạm thời - Chờ xét duyệt thêm");
+                    cxd++;
+                }
+            } else {
+                alert("Vui lòng chỉ nhập 'có' hoặc 'không'.");
+            }
+
+            
+        }
+
+        // --- IN BÁO CÁO KẾT THÚC ---
+let baoCao = 
+`--- BÁO CÁO KIỂM KÊ ---
+Tổng số yêu cầu đã xử lý: ${ycxl} 
+Số yêu cầu được đặt trước thành công:   ${dtc} 
+Số yêu cầu bị từ chối:        ${ycbtc}
+Số yêu cầu chờ xét duyệt : ${cxd}
+`;
+
+alert(baoCao);
+console.log(baoCao);
+    </script>
+</body>
+</html>

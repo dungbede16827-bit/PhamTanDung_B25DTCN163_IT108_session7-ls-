@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tong = 0 ;
+        for(let i = 1 ; i <= 50 ; i++) {
+            if(i % 3 === 0 ) {
+                document.write("Fizz <br>");
+                console.log("Fizz <br>");
+                tong += i ;
+            } else if ( i  % 5 === 0) {
+                document.write("Buzz <br>");
+                console.log("Buzz <br>" );
+            } else if (i % 3 === 0  &&  i  % 5 === 0 ) {
+                document.write("FizzBuzz <br>");
+                console.log("FizzBuzz <br>");
+            } else {
+                document.write(i);
+                console.log(i);
+            }
+        }
+        document.write("<br> Tổng của tất cả các số đã in ra chữ Fizz Là " + tong );
+        console.write("<br> Tổng của tất cả các số đã in ra chữ Fizz Là" + tong);
+    </script>
+</body>
+</html>

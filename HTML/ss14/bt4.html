@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm</title>
+</head>
+
+<body>
+
+    <ul id="product-list">
+    </ul>
+
+    <script>
+
+        let name = "Bánh Chưng";
+        let price = 150000;
+
+        const li = document.createElement("li");
+        li.className = "item";
+
+        li.innerHTML = `
+<span class="product-text">${name} - ${price.toLocaleString()} VND</span>
+<button class="edit-price-btn">Sửa giá</button>
+<button class="delete">Xóa</button>
+`;
+
+        document.getElementById("product-list").appendChild(li);
+
+        const deleteBtn = li.querySelector(".delete");
+
+        deleteBtn.addEventListener("click", function () {
+
+            const confirmDelete = confirm("Bạn có chắc muốn xóa sản phẩm này?");
+
+            if (confirmDelete) {
+                li.remove();
+            }
+
+        });
+
+        const editBtn = li.querySelector(".edit-price-btn");
+
+        editBtn.addEventListener("click", function () {
+
+            let newPrice = prompt("Nhập giá mới (VND):");
+
+            if (newPrice === null) return;
+
+            newPrice = Number(newPrice);
+
+            if (isNaN(newPrice) || newPrice <= 0) {
+                alert("Giá không hợp lệ!");
+                return;
+            }
+
+            price = newPrice;
+
+            const productText = li.querySelector(".product-text");
+
+            productText.textContent = `${name} - ${price.toLocaleString()} VND`;
+
+        });
+
+    </script>
+
+</body>
+
+</html>

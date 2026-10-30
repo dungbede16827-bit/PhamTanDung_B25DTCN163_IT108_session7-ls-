@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chuẩn bị Tết</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background: #f5efe6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:420px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.header{
+    background:#d62828;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.header p{
+    margin:5px 0 0;
+    font-size:14px;
+}
+
+ul{
+    list-style:none;
+    padding:20px;
+    margin:0;
+}
+
+.todo-item{
+    background:#f3e8d1;
+    padding:15px;
+    margin-bottom:12px;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-left:6px solid orange;
+}
+
+.status{
+    color:#888;
+    font-size:14px;
+}
+
+.footer{
+    text-align:center;
+    padding:15px;
+    font-size:13px;
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>Chuẩn bị Tết Nguyên Đán</h1>
+<p>Danh sách việc cần làm</p>
+</div>
+
+<ul id="todoList"></ul>
+
+<div class="footer">
+Đã lưu vào localStorage lần đầu tiên • Refresh trang để kiểm tra
+</div>
+
+</div>
+
+<script>
+
+const todos = [
+  { id: 1, task: "Mua bánh chưng", done: false },
+  { id: 2, task: "Dọn nhà đón Tết", done: false },
+  { id: 3, task: "Gói bánh chưng", done: false },
+  { id: 4, task: "Trang trí nhà cửa", done: false }
+];
+
+const todoList = document.getElementById("todoList");
+
+function renderTodos(list) {
+
+    todoList.innerHTML = "";
+
+    list.forEach(todo => {
+
+        const li = document.createElement("li");
+
+        li.className = "todo-item";
+
+        li.innerHTML = `
+            <span>🌸 ${todo.task}</span>
+            <span class="status">Chưa làm</span>
+        `;
+
+        todoList.appendChild(li);
+    });
+
+}
+
+function init(){
+
+    if(!localStorage.getItem("myTodos")){
+        localStorage.setItem("myTodos", JSON.stringify(todos));
+    }
+
+    const savedTodos = JSON.parse(localStorage.getItem("myTodos"));
+
+    renderTodos(savedTodos);
+}
+
+window.onload = init;
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <style>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 400px;
+  padding: 32px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #2563eb;
+}
+
+button {
+  padding: 9px 18px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+ul li {
+  padding: 7px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+</style>
+  <body>
+    <div class="container">
+      <h1>📝 Todo List</h1>
+
+      <div class="input-row">
+        <input type="text" id="taskInput" placeholder="Nhập công việc..." />
+        <button id="btn">Thêm</button>
+      </div>
+
+      <ul id="taskList">
+        <li>Quét nhà</li>
+        <li>Giặt quần áo</li>
+      </ul>
+    </div>
+    
+  </body>
+  <script>
+    let list = ["Làm bài","chơi game" ];
+
+    let inputTask = document.getElementById("taskInput"); // nhập
+    let btn =document.getElementById("btn"); // buttton
+    let TaskList = document.getElementById("taskList");
+
+    btn.addEventListener('click',createTask);
+    inputTask.addEventListener('keypress', (e) => {
+        if(e.key === 'enter') {
+
+            createTask() ;
+        }
+    })
+
+
+    function createTask() {
+        let newInput = inputTask.value.trim();
+        if(newInput.trim() === '') {
+            alert("Vui lòng nhập tên công việc!");
+            return;
+        }
+
+        let newTask = {
+            id: Date.now(),
+            name: newInput,
+            status: false
+        }
+        list.push(newTask);
+        console.log("mảng hiện tại ",newInput);
+        inputTask.value =''
+        inputTask.focus();
+        renderTask();
+
+
+    }
+    function renderTask() {
+        TaskList.innerHTML=''
+
+        
+            let showList = document.createElement('div') ;
+        
+            TaskList.forEach((value) => { showList.innerHTML += `<li>
+        <ul>name: ${value.name} </ul>
+        <button>sửa</button>
+        <button>Xóa</button>
+   
+    </li>`
+                
+                
+            });
+
+    }
+
+  </script>
+</html>

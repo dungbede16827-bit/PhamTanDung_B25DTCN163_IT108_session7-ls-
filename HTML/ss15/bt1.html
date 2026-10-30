@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Công Việc - Todo List</title>
+    <link rel="stylesheet" href="todo-list.css" />
+  </head>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header Styles */
+.header {
+    background: #26A69A;
+    padding: 30px;
+    color: white;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#taskInput:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.btn-add {
+    background: #66BB6A;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add:hover {
+    background: #4CAF50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.4);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+/* Task List Styles */
+.task-list {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    min-height: 200px;
+}
+
+.task-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background: #26A69A;
+    border-radius: 10px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    animation: taskSlideIn 0.3s ease-out;
+}
+
+@keyframes taskSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.task-item.completed {
+    opacity: 0.7;
+}
+
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #66BB6A;
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.task-text.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: #26A69A;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #00897B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(38, 166, 154, 0.3);
+}
+
+.btn-delete {
+    background: #EF5350;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #E53935;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(239, 83, 80, 0.3);
+}
+
+/* Edit Mode Styles */
+.task-item.editing .task-text {
+    display: none;
+}
+
+.task-edit-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #26A69A;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+}
+
+.btn-save,
+.btn-cancel {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save {
+    background: #66BB6A;
+    color: white;
+}
+
+.btn-save:hover {
+    background: #4CAF50;
+}
+
+.btn-cancel {
+    background: #BDBDBD;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background: #9E9E9E;
+}
+
+/* Footer Styles */
+.footer {
+    background: #f8f9fa;
+    padding: 20px 30px;
+    border-top: 2px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-counter {
+    font-size: 16px;
+    color: #666;
+    font-weight: 600;
+}
+
+.task-counter span {
+    color: #26A69A;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.completion-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #66BB6A;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+
+.completion-badge .check-icon {
+    font-size: 20px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.empty-state-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.empty-state-text {
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        border-radius: 0;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .btn-add {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .task-item {
+        flex-wrap: wrap;
+    }
+
+    .task-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+.task-list div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+.task-list div:hover {
+    background: #e9ecef;
+}
+.task-list input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.task-list p {
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+.task-list div div {
+    display: flex;
+    gap: 8px;
+}
+.task-list button:first-child {
+    background: #26A69A;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.task-list button:first-child:hover {
+    background: #00897B;
+}
+.task-list button:last-child {
+    background: #EF5350;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.task-list button:last-child:hover {
+    background: #E53935;
+}
+.new-input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 2px solid #26A69A;
+    border-radius: 6px;
+    font-size: 15px;
+}
+  </style>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <h1>📝 Quản Lý Công Việc</h1>
+        <div class="input-group">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="Nhập công việc mới..."
+            autocomplete="off"
+          />
+          <button id="addBtn" class="btn-add">Thêm</button>
+        </div>
+      </header>
+
+      <!-- Body - Task List -->
+      <main class="task-list" id="taskList">
+        <!-- Tasks will be dynamically added here -->
+        <div class="empty-state">
+          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-text">
+            Chưa có công việc nào. Hãy thêm công việc mới!
+          </div>
+        </div>
+
+        <div class="task-item" data-id="2">
+          <input type="checkbox" class="task-checkbox" /><span class="task-text"
+            >Quét nhà</span
+          >
+          <div class="task-actions">
+            <button class="btn-edit">✏️ Sửa</button
+            ><button class="btn-delete">🗑️ Xóa</button>
+          </div>
+        </div>
+      
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="task-counter">
+          <span id="completedCount">0</span> /
+          <span id="totalCount">0</span> công việc hoàn thành
+        </div>
+      </footer>
+    </div>
+    <script>
+        let listTask = [];
+
+        let inputTask = document.getElementById('taskInput') // gọi input chỗ nhập vào 
+        let addBtn = document.getElementById('addBtn'); // button 
+        let taskList = document.getElementById('taskList'); // nơi hiển thị công việc
+
+
+        addBtn.addEventListener('click',createTask);
+        inputTask.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                createTask();
+            }
+        })
+
+        function createTask() {
+            let valueInput = inputTask.value.trim(); // hien len console
+            if(valueInput.trim() === '') {
+                alert("Vui lòng thêm công việc!");
+                return
+            }
+            let newTask = {
+                id: Date.now(),
+                name: valueInput,
+                status: false 
+            }
+            listTask.push(newTask);
+            console.log("mảng hiện tại:",valueInput)
+            inputTask.value =''; // xóa nội dung ô inputtask sau khi nhập ô rỗng
+            inputTask.focus(); // con trỏ quay trở lại ô nhập
+            renderTask() // hàm này hiển thị danh sách công việc lên giao diện
+            
+        }
+
+        function renderTask() {
+            taskList.innerHTML = '';
+
+            let showList = document.createElement('div')
+            if(listTask.length === 0) {
+                taskList.innerHTML = `
+                <div>
+        <div>📋</div>
+        <div>Chưa có công việc nào. hãy thêm công việc mới!</div>
+        </div>`
+            }   else {
+                listTask.forEach((task) => {
+                
+                showList.innerHTML += `  <div>
+            <input type="checkbox" name="" id=""  ${task.status ? 'checked' : ''}  onchange= "toggleTaskStatus(${task.id})"/>
+            <p id = "task-name-${task.id}"> ${task.name} </p>
+            <div>
+                <button onclick = "updateTask(${task.id})" > Sửa</button>
+                <button onclick="deleteTask(${task.id})"> Xóa</button>
+            </div>
+        </div>`
+         })
+            taskList.appendChild(showList);
+            }
+            
+           
+        }
+
+        //delete task
+        function deleteTask(id) {
+            let check_confirm = confirm("Bạn có chắc muốn xóa công việc này không?");
+            if(!check_confirm) {
+                return;
+            }
+            listTask = listTask.filter((task) => task.id !== id);
+            renderTask();
+        }
+
+        // cập nhật
+        function updateTask(id) {
+            let findObject = listTask.find(task => task.id === id);
+            let valueInput = document.getElementById(`task-name-${id}`)
+            
+            let newInput = document.createElement('input');
+            newInput.type = "text";
+            newInput.value = findObject.name
+            newInput.className = "new-input";
+
+            valueInput.replaceWith(newInput); // thay thế thẻ p bằng thẻ input
+            newInput.select();
+            newInput.focus();
+
+            function save() {
+                let newValueInput = newInput.value;
+                if(newValueInput === '') {
+                    alert("Tên công việc không được để trống ");
+                    return;
+                }
+                findObject.name = newValueInput;
+                renderTask();
+
+            }
+            newInput.addEventListener('keypress',(e) => {
+                if(e.key === "Enter") {
+                    save();
+                    
+                }
+            })
+                        
+
+        }
+    function toggleTaskStatus(id) {
+        let findObject = listTask.find(task => task.id === id);
+       
+        findObject.status = !findObject.status;
+        renderTask();
+    }
+
+    //update count complete 
+    function updateCount() {
+        let totalCount = listTask.length;
+        let completedCount = listTask.filter(task => task.status).length;
+
+        document.getElementById('totalCount').textContent = totalCount;
+        document.getElementById('completedCount').textContent = completedCount;
+    }
+    
+    </script>
+  </body>
+</html>

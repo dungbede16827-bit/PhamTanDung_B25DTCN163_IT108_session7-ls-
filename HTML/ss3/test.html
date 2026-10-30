@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("ngu day")
+        console.log("đánh răng")
+        console.log("đi học")
+        console.log("ăn trưa")
+        console.log("về nhà")
+        console.log("học bài")
+        console.log("ăn tối")
+        console.log("chơi điện tử")
+        console.log("ngủ dậy")
+
+        //một biến kiểm soát vòng lặp
+        // i,j ,k,l,m,n...
+        for (let j = 0 ; j < 4 ; j = j + 1 ) {
+        for( let i = ; i <= 7; i = i+1 ) {
+            
+        console.log("ngu day")
+        console.log("đánh răng")
+        console.log("đi học")
+        console.log("ăn trưa")
+        console.log("về nhà")
+        console.log("học bài")
+        console.log("ăn tối")
+        console.log("chơi điện tử")
+        console.log("đi ngủ ")
+            }
+        }
+
+
+        for(let i =0 ; i <= 10 ; i = i +1 ) {
+            
+            if(i=== 5) {
+                
+                continue;
+            }
+            console.log("i=",i );
+        }
+
+        while(condition) {
+            //do something
+        }
+
+        let email = prompt("plese input your email");
+        let password = prompt("plese input your passworld");
+
+        if(email !== "admin@gmail.com" || password !== "123123" ) {
+            alert("mật khẩu hoặc email không đúng ");
+        } else {
+            alert("đăng nhập thành công , chào mừng bạn đến với trang facebook");
+        }
+
+        let email = prompt("plese input your email");
+        let password = prompt("plese input your passworld");
+
+        while(email !== "admin@gmail.com" && password !== "123123" ) {
+            let email = prompt("plese input your email");
+        let password = prompt("plese input your passworld");
+        if(email === "admin@gmail.com" && password === "123123" ) {
+            alert("đăng nhập thành công")
+        }else {
+            alert (" mật khẩu hoặc email không đúng");
+        }
+        }
+
+        let email = prompt("plese input your email");
+        let password = prompt("plese input your passworld");
+
+        while(email !== "admin@gmail.com" && password !== "123123" ){
+            alert (" mật khẩu hoặc email không đúng");
+
+            let email = prompt("plese input your email");
+        let password = prompt("plese input your passworld");
+
+        }
+        alert("đăng nhập thành công");
+
+        let result = 49 
+        while(true) {
+        let answer = +prompt("plese input your number answer");
+
+        if(answer > result) {
+            alert("số bạn đoán lớn quá !");
+        } else if (answer <result) {
+            alert("số bạn đoán nhỏ quá !");
+        } else {
+            alert("BINGOOOO !!!! bạn đoán đúng rồi ");
+            break;
+        }
+    }
+    </script>
+</body>
+</html>

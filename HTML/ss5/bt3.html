@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let booksId = [];
+        let booksName = [];
+        let inventoryQuantity = [];
+        let soSachBoSung ;
+        do {
+            soSachBoSung = Number(prompt("Có bao nhiêu loại sách cần kiểm tra bổ sung hôm nay?"));
+        } while (isNaN(soSachBoSung) || soSachBoSung <=0 );
+        
+        for(let i = 0 ; i < soSachBoSung ; i++) {
+            alert("nhập thông tin cho sách thứ " + (i+1));
+          let id;
+          do {
+            id = prompt("nhập mã sách :");
+
+          } while (!id || id.trim() === "");
+
+          let name;
+
+          do {
+            name = prompt("nhập tên sách :");
+
+          } while (!name || name.trim() === "");
+
+          let quantity;
+
+          do {
+            quantity = prompt("Nhập số lượng tồn kho hiện tại:");
+
+          } while (isNaN(quantity) || quantity < 0);
+          booksId.push(id);
+          booksName.push(name);
+          inventoryQuantity.push(quantity);
+        }
+        document.write("Tổng số loại sách đang kiểm tra :" + booksId.length + "<br>");
+        let countLowStock = 0 ;
+        for (let i = 0 ; i <inventoryQuantity.length ; i++) {
+            if(inventoryQuantity[i] <= 5 ){
+                countLowStock++;
+            }
+        }
+        document.write("Số sách cần ưu tiên bổ sung (≤ 5 bản): " + countLowStock +"<br>");
+        
+        
+        document.write("Mã sách đã hết hàng: ");
+        let hasOutOfStock = false;
+        for (let i = 0 ; i <inventoryQuantity.length;i++) {
+            if(inventoryQuantity[i] ===0 ) {
+            document.write(booksId[i] + "<br>");
+            hasOutOfStock = true;
+            }
+        }
+        if (!hasOutOfStock) {
+           document.write("Không có sách nào hết hàng<br>");     
+        }
+         document.write("<h3>Danh sách chi tiết các sách</h3>");
+         for (let i = 0; i < booksId.length; i++) {
+        document.write(
+            "Mã sách: " + booksId[i] + 
+            " | Tên sách: " + booksName[i] + 
+            " | Tồn kho: " + inventoryQuantity[i] + 
+            "<br>"
+        );
+        }
+    </script>
+</body>
+</html>

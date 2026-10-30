@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+let nickName = prompt("Nhập tên của bạn:");
+        let vaiTro = prompt("Nhập một trong các từ: admin, student, guest");
+        let soDuTK = Number(prompt("Nhập số dư tài khoản"));
+        let trangThaiThe = prompt("Thẻ thư viện còn hoạt động không? (true / false)");
+        let soNgayQuaHan = Number(prompt("Nhập số ngày quá hạn:"));
+
+        // Chuyển trạng thái thẻ sang boolean
+        let theHoatDong = (trangThaiThe === "true");
+
+        // Quyền hạn
+        let thongBaoQuyen = "";
+
+        switch (vaiTro) {
+            case "admin":
+                thongBaoQuyen = "Chào Admin, bạn có toàn quyền hệ thống";
+                break;
+            case "student":
+                thongBaoQuyen = "Chào sinh viên, bạn có thể mượn sách";
+                break;
+            case "guest":
+                thongBaoQuyen = "Chào khách, bạn chỉ có thể đọc tại chỗ";
+                break;
+            default:
+                thongBaoQuyen = "Lỗi: Vai trò không hợp lệ!";
+        }
+
+        // Kiểm tra điều kiện mượn sách
+        let ketQuaMuon = "YÊU CẦU BỊ TỪ CHỐI";
+        let lyDo = "";
+
+        if (!nickName) {
+            lyDo = "Tên người dùng không hợp lệ";
+        } else if (vaiTro !== "student" && vaiTro !== "admin") {
+            lyDo = "Vai trò không đủ quyền mượn sách";
+        } else if (soDuTK <= 0) {
+            lyDo = "Số dư tài khoản không đủ";
+        } else if (!theHoatDong) {
+            lyDo = "Thẻ thư viện đang bị khóa";
+        } else {
+            ketQuaMuon = "ĐƯỢC PHÉP MƯỢN SÁCH";
+        }
+
+        // Tính tiền phạt
+        let tienPhat = 0;
+        let tinhTrangTra = "";
+
+        if (soNgayQuaHan <= 0) {
+            tinhTrangTra = "Cảm ơn bạn đã trả đúng hạn";
+        } else if (soNgayQuaHan <= 5) {
+            tienPhat = soNgayQuaHan * 5000;
+            tinhTrangTra = `Quá hạn ${soNgayQuaHan} ngày`;
+        } else if (soNgayQuaHan <= 10) {
+            tienPhat = soNgayQuaHan * 10000;
+            tinhTrangTra = `Quá hạn ${soNgayQuaHan} ngày`;
+        } else {
+            tienPhat = 200000;
+            tinhTrangTra = `Quá hạn ${soNgayQuaHan} ngày - TÀI KHOẢN BỊ KHÓA`;
+        }
+
+        console.log(`
+Người dùng: ${nickName.toUpperCase()}
+
+Quyền hạn: ${thongBaoQuyen}
+
+Kết quả mượn: ${ketQuaMuon}
+${lyDo ? "Lý do: " + lyDo : ""}
+
+Tình trạng trả sách: ${tinhTrangTra}
+
+Tiền phạt: ${tienPhat} VNĐ
+        `);
+
+    </script>
+</body>
+
+</html>

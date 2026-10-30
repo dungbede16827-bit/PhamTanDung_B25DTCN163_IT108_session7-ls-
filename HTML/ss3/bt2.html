@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let soLuot = Number(prompt("SỐ lượt trả sách hôm nay "));
+
+        // Biến đếm số lượt trả muộn (≥ 15 ngày)
+        let soLuotTraMuon = 0;
+
+         for(let i = 1 ; i <= soLuot ; i = i + 1 ) {
+
+            document.write("<br> Lượt trả thứ :"+ i  +"<br>");
+
+        let tenNguoiTra = prompt("Tên người trả");
+        let tenSach = prompt("Tên sách");
+         let soNgayMuon;
+
+         
+
+        while(true) {
+            soNgayMuon = Number(prompt("Số ngày mượn (số nguyên >= 1) "));
+            if(Number.isInteger(soNgayMuon) && soNgayMuon >= 1 ) {
+                break;
+            } else {
+                alert("Dữ liệu không hợp lẹ ! Vui lòng nhập số nguyên >= 1.");
+            }
+        }
+        
+        if(soNgayMuon <= 14) {
+            document.write("trả đúng hạn<br> ");
+        } else if (soNgayMuon <= 21) {
+            document.write("trả muộn nhẹ châm trước");
+            soLuotTraMuon++;
+        } else {
+            document.write("Quá hạn nghiêm trọng cần ghi biên bản phạt");
+            soLuotTraMuon++;
+        }
+    }
+    document.write("Tổng số lượt trả sách " + soLuot + "<br>");
+    document.write(" số lượt trả sách muộn (>= 15 ngày) " + soLuotTraMuon + "<br>");
+    </script>
+</body>
+</html>

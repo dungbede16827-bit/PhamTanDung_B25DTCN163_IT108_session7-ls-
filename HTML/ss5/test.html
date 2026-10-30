@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let mon1 = "mực nướng";
+        let mon2 = "cá chỉ vàng";
+        let mon3 = "mực xào";
+        let mon4 = "mực hấp";
+        let mon5 = "mực luộc";
+        let mon6 = "mực quấn";
+
+        let mon100 = "trâu cuốn lá lốt";
+
+        let menu = [
+            "cá chỉ vàng",
+            "bò cuốn lá cải",
+            "trâu cuốn lá lốt"
+
+        ];
+        console.log(menu);
+        console.log(menu.length);
+
+        console.log(menu[0]); // cá chỉ vàng
+
+        console.log("nấu",menu[0]);
+        console.log("ăn",menu[0]);
+
+        console.log("tăng 100k với món", menu[0]);
+        console.log("tăng 100k với món", menu[1]);
+        console.log("tăng 100k với món", menu[2]);
+        console.log("tăng 100k với món", menu[3]);
+
+        for(let i = 0 ; i <= menu.length -1 ; i++) {
+            console.log("tăng giá 100k với món", menu[i]);
+        }
+        menu[1] ="bò cuốn lá mồng tơi";
+
+        menu.push("cá bò");
+        // thêm mới vào vị trí  cuối menu
+        menu.unshift("cá heo");
+        // unshift(el) thêm mới vào vị trí đầu tiên
+
+
+        // xóa vị trí cuối mảng
+        menu.pop();
+        // xóa vị trí đầu tiên
+        menu.shift();
+
+        // xóa ptu ở vị trí bky
+
+        menu.splice(2,1);
+        // xóa cả ptu phía dưới
+        menu.splice(2,2);
+        // thêm phần tử bất kì
+        menu.splice(2,0,"má heo cháy tỏi")
+
+        let newMenu =["bún bò huế", "phở bò" , "mỳ tôm" ,"bún chả"];
+
+        menu.concat(newMenu); //[ar1,ar2]
+        //concat nối 2 mảng
+        let concatMenu = menu.concat(newMenu); 
+        //nối chuỗi thành công
+
+        let index = menu.indexOf("trâu gác bếp"); //lấy ra vị trí phần tử 2 nếu k có thì -1
+        
+        let isInMenu = menu.includes("Trâu cuốn lá lốt"); // true check xem tồn tại k đúng thì true sai thì false
+
+        let reverseMenu = menu.reverse(); // đaảo ngược
+
+        let radomString = "hello world ";
+
+        let radomStringLetters = radomString.split(""); // tách thành mảng kí tự 2 phần tử tách theo dấu cách
+
+        radomStringLetters.join(""); // nối liền 
+
+
+        for(let i = 0 ; i< menu.length -1 ; i++) {
+            console.log(menu[i]);
+        }
+
+        // for ... in
+        for(let index in menu) {
+            console.log(menu[index]);
+        }
+        // for ... of
+        for (let element of menu) {
+            console.log(element);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let names = ["Laptop", "Chuột", "Bàn phím", "Màn hình", "Tai nghe"];
+        let prices = [1200, 150, 300, 800, 90];
+        let stocks = [5, 0, 10, 3, 0];
+
+        while (true) {
+            let choice = prompt(`d
+===== MENU QUẢN LÝ KHO =====
+1. Lọc sản phẩm cao cấp (>500)
+2. Kiểm định trạng thái dữ liệu
+3. Phân tích giá trị vốn hóa
+4. Giảm giá 10% toàn bộ sản phẩm
+5. Tìm sản phẩm theo từ khóa
+6. Báo cáo tồn kho
+7. Thoát
+Nhập lựa chọn (1-7):
+`);
+
+            switch (choice) {
+
+                // 1. FILTER
+                case "1":
+                    let spCaoCap  = names.filter((name, index) => prices[index] > 500);
+                    alert("Sản phẩm cao cấp: " + spCaoCap.join(", "));
+                    break;
+
+                // 2. SOME + EVERY
+                case "2":
+                    let coHetHang  = stocks.some(s => s === 0);
+                    let tatCaTren100  = prices.every(p => p > 100);
+
+                    alert(
+                        "Có sản phẩm hết hàng? " + coHetHang  +
+                        "\nTất cả giá > 100? " + tatCaTren100
+                    );
+                    break;
+
+                // 3. REDUCE
+                case "3":
+                    let tongGiaTriKho  = prices.reduce((sum, price, i) => sum + price * stocks[i], 0);
+                    alert("Tổng giá trị kho: " + tongGiaTriKho );
+                    break;
+                
+                // 4. MAP (ghi đè)
+                case "4":
+                    giaSP  = giaSP.map(p => p * 0.9);
+                    alert("Đã giảm giá 10% cho tất cả sản phẩm!");
+                    break;
+
+                // 5. SEARCH KEYWORD
+                case "5":
+                    let tuKhoa  = prompt("Nhập từ khóa tìm kiếm:").toLowerCase();
+
+                    let ketQua  = names
+                        .map((name, i) => ({ name, price: prices[i], stock: stocks[i] }))
+                        .filter(p => p.name.toLowerCase().includes(keyword));
+
+                    if (ketQua .length === 0) {
+                        alert("Không tìm thấy sản phẩm!");
+                    } else {
+                        let output = results.map(p => `${p.name} - ${p.price} - ${p.stock}`).join("\n");
+                        alert("Kết quả:\n" + output);
+                    }
+                    break;
+
+                // 6. MAP + FOR EACH
+                case "6":
+                    let trangThai  = stocks.map(s => s > 0 ? "Còn hàng" : "Hết hàng");
+
+                    let report = "";
+                    names.forEach((name, i) => {
+                        report += `${name} - ${status[i]}\n`;
+                    });
+
+                    alert(report);
+                    break;
+
+                // 7. EXIT
+                case "7":
+                    alert("Đã thoát chương trình!");
+                    break;
+
+                default:
+                    alert("Lựa chọn không hợp lệ!");
+            }
+
+            if (choice === "7") break;
+        }
+    </script>
+</body>
+
+</html>

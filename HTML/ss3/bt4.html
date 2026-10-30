@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tongSoSachKiemKe = 0 ;
+       let SoSachMat = 0 ;
+       let SoSachHetHang = 0 ;
+       let SoSachTonKhoNhieu = 0 ;
+       let SoSachTonKhoBT = 0 ;
+        let coKh ;
+
+        
+       while (true) {
+   
+    let tiepTuc = prompt("Tiếp tục kiểm kê sách tiếp theo? (có/không)").toLowerCase().trim();
+
+    if (tiepTuc === "không") {
+        
+        break; 
+    } else if (tiepTuc === "có") {
+        
+        
+        let maSach = "";
+        
+        while (maSach === "") {
+            maSach = prompt("Nhập Mã sách (không được để trống):");
+        }
+
+        let tenSach = prompt("Nhập Tên sách:");
+        
+        let soLuong = -1;
+        // Bắt buộc nhập số nguyên >= 0
+        while (soLuong < 0 ) {
+            soLuong = prompt("Nhập Số lượng thực tế đang có (số nguyên >= 0):");
+        }
+
+        let tinhTrang = 0;
+        
+        while (tinhTrang !== 1 && tinhTrang !== 2) {
+            tinhTrang = prompt("Tình trạng sách (1: Bình thường, 2: Mất):");
+        }
+
+        
+        tongSoSach++; 
+
+        
+        if (tinhTrang === 2) {
+            soSachMat++;
+            console.log(`=> Sách "${tenSach}": Đã ghi nhận là SÁCH MẤT.`);
+        } 
+        // Các trường hợp còn lại (Tình trạng = 1)
+        else {
+            // Ưu tiên 2: Sách hết (Số lượng = 0)
+            if (soLuong === 0) {
+                soSachHetHang++;
+                console.log(`=> Sách "${tenSach}": Đã ghi nhận là SÁCH HẾT HÀNG.`);
+            } 
+            // Ưu tiên 3: Tồn kho nhiều (Số lượng >= 10)
+            else if (soLuong >= 10) {
+                soSachTonNhieu++;
+                console.log(`=> Sách "${tenSach}": Đã ghi nhận là TỒN KHO NHIỀU.`);
+            } 
+            // Ưu tiên 4: Tồn kho bình thường (Số lượng 1-9)
+            else {
+                soSachTonBinhThuong++;
+                console.log(`=> Sách "${tenSach}": Đã ghi nhận là TỒN KHO BÌNH THƯỜNG.`);
+            }
+        }
+
+    } else {
+        alert("Vui lòng chỉ nhập 'có' hoặc 'không'.");
+    }
+}
+
+// --- IN BÁO CÁO KẾT THÚC ---
+let baoCao = 
+`--- BÁO CÁO KIỂM KÊ ---
+Tổng số sách đã kiểm kê: ${tongSoSach} cuốn
+Số sách mất:             ${soSachMat} cuốn
+Số sách hết hàng:        ${soSachHetHang} cuốn
+(Chi tiết khác: Tồn nhiều: ${soSachTonNhieu}, Tồn thường: ${soSachTonBinhThuong})`;
+
+alert(baoCao);
+console.log(baoCao);
+        
+    </script>
+</body>
+</html>

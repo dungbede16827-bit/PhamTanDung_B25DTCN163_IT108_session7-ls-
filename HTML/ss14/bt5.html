@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm sản phẩm</title>
+</head>
+
+<body>
+
+    <input type="text" id="search-input" placeholder="Tìm sản phẩm...">
+
+    <ul id="product-list">
+        <li class="product-item">Bánh Chưng - 150000 VND</li>
+        <li class="product-item">Bánh Tét - 120000 VND</li>
+        <li class="product-item">Bánh Mì - 20000 VND</li>
+    </ul>
+
+    <script>
+        const searchInput = document.getElementById("search-input");
+
+        searchInput.addEventListener("input", function () {
+
+            const keyword = searchInput.value.toLowerCase();
+
+            const items = document.querySelectorAll(".product-item");
+
+            items.forEach(function (item) {
+
+                const text = item.textContent.toLowerCase();
+
+                if (text.includes(keyword)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
